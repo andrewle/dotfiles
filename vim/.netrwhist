@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/andrewle/Work/SeaVees/site/system_AoJa4r7PrebH/template_files'
-let g:netrw_dirhist_2='/Users/andrewle/Work/SeaVees/site/system_AoJa4r7PrebH/template_files/site'
-let g:netrw_dirhist_3='/Users/andrewle/Projects/Gogofoto'
-let g:netrw_dirhist_4='/Users/andrewle/Projects/Gogofoto/public/javascripts/controllers'
