@@ -9,6 +9,9 @@ task :install do
   # Vim
   `ln -s #{pwd}/vim ~/.vim`
   `ln -s #{pwd}/vim/vimrc ~/.vimrc`
+
+  # Update submodules
+  `git submodule update --init`
 end
 
 desc 'Uninstall installed dotfile symlinks'
