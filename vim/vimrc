@@ -15,6 +15,7 @@ call pathogen#helptags()
 "
 let g:snips_author = "Andrew Le" " Set snipmate author 
 
+set encoding=utf-8
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
 set smarttab                    " 
@@ -44,6 +45,7 @@ set foldmethod=marker           " Set the folding method to use inline markers
 set grepprg=ack                 " Use ack for grepping instead of vimgrep
 set grepformat=%f:%l:%m
 set completeopt=longest,menuone " Omnicompletion customizations
+set listchars=tab:>#,eol:$,trail:.
 
 " PLUGIN SETTINGS
 "
@@ -55,7 +57,7 @@ let g:fuzzy_ignore = "*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf"
 let g:fuzzy_matching_limit = 20
 
 " SuperTab
-let g:SuperTabCrMapping = 0
+let g:SuperTabCrMapping = 1
 let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
@@ -64,7 +66,8 @@ let g:SuperTabMappingTabLiteral = '<s-tab>'
 if has("gui_running")
   colorscheme ir_black
   set guioptions=egmrt
-  set guifont=Inconsolata:h14
+  set guifont="DejaVu Sans Mono":h14
+  set listchars=tab:▸\ ,eol:¬,trail:.
 endif
 
 if !has("gui_running")
