@@ -1,0 +1,210 @@
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
+endif
+
+" Make Vim be more liberal about hidden buffers
+set hidden
+
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" Set me as the author for the SnipMate plugin
+let g:snips_author ="Andrew Le"
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+set smarttab
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set tabstop=4
+set ignorecase smartcase
+set nowrap
+set autoindent
+
+set wildignore=*.swp
+
+" Hide the following file name patterns from the builtin browser
+let g:netrw_list_hide= '.*\.swp$,\.DS_Store$'
+
+" Use ack for grepping instead of vimgrep
+set grepprg=ack
+set grepformat=%f:%l:%m
+
+set guifont=Inconsolata:h14
+set number
+set linebreak
+set textwidth=0
+set cursorline
+
+" Set the folding method to use inline markers 
+set foldmethod=marker
+
+" Set the colorscheme differently for gui vs command line mode
+if has("gui_running")
+  colorscheme ir_black
+endif
+
+if !has("gui_running")
+  " I'm using iTerm2, declare that I've got 256 colors
+  set t_Co=256
+
+  " colorscheme slate
+  colorscheme ir_black
+
+  " Don't show the cursor underline/highlighting
+  set nocursorline
+endif
+
+" Move up and down over screen lines instead of file lines
+nnoremap j gj
+nnoremap k gk
+
+if has("gui_running")
+    set guioptions=egmrt
+endif
+
+set nobackup		" do not keep a backup file, use versions instead
+set history=50		" keep 50 lines of command line history
+set ruler		    " show the cursor position all the time
+set incsearch		" do incremental searching
+
+" Make command line two lines high
+set ch=2
+
+" tell VIM to always put a status line in, even if there is only one window
+set laststatus=2
+
+" Don't update the display while executing macros
+set lazyredraw
+
+" Show the current command in the lower right corner
+set showcmd
+
+" Show the current mode
+set showmode
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" FuzzyFinder settings
+map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>b :FuzzyFinderBuffer<CR>
+let g:fuzzy_ignore = "*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf"
+let g:fuzzy_matching_limit = 70
+
+" allow command line editing like emacs
+cnoremap <C-A>      <Home>
+cnoremap <C-B>      <Left>
+cnoremap <C-E>      <End>
+cnoremap <C-F>      <Right>
+cnoremap <C-N>      <End>
+cnoremap <C-P>      <Up>
+cnoremap <ESC>b     <S-Left>
+cnoremap <ESC><C-B> <S-Left>
+cnoremap <ESC>f     <S-Right>
+cnoremap <ESC><C-F> <S-Right>
+cnoremap <ESC><C-H> <C-W>
+
+" Edit the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Turn off that stupid highlight search
+nmap <silent> <leader>/ :noh<CR>
+
+" Rewrap the current paragraph
+nmap <C-q> gwap
+
+" Easy buffer navigation (next buffer and previous buffer)
+noremap <silent> <leader>n :bn<CR>
+noremap <silent> <leader>p :bp<CR>
+
+" Shorcut for the scratch.vim scratch buffer
+noremap <silent> <leader>sc :Scratch<CR>
+
+noremap <silent> <leader>e :Explore<CR>
+noremap <silent> <leader>s :Sexplore<CR>
+
+" In many termioal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+  hi MatchParen     guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=cyan ctermbg=darkgray    cterm=NONE
+endif
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Omnicompletion customizations
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " PHP syntax check on the current file
+  autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+  " Markdown formatting
+  augroup mkd
+    autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+  augroup END
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
