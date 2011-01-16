@@ -3,6 +3,10 @@ if v:progname =~? "evim"
   finish
 endif
 
+" Activate Pathogen plugin
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " Make Vim be more liberal about hidden buffers
 set hidden
 
