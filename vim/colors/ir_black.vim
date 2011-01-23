@@ -70,11 +70,11 @@ hi Normal           guifg=#f6f3e8     guibg=#262626 gui=NONE      ctermfg=NONE  
 hi NonText          guifg=#070707     guibg=#262626 gui=NONE      ctermfg=black       ctermbg=NONE        cterm=NONE
 
 hi Cursor           guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
-hi LineNr           guifg=#888888 guibg=#444444 gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi LineNr           guifg=#888888     guibg=#444444     gui=NONE      ctermfg=244         ctermbg=235         cterm=NONE
 
 hi VertSplit        guifg=#202020     guibg=#202020     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
-hi StatusLine       guifg=#CCCCCC     guibg=#333333 gui=italic    ctermfg=white       ctermbg=darkgray    cterm=NONE
-hi StatusLineNC     guifg=black       guibg=#202020 gui=NONE      ctermfg=blue        ctermbg=darkgray    cterm=NONE  
+hi StatusLine       guifg=#CCCCCC     guibg=#333333 gui=NONE      ctermfg=black       ctermbg=darkgray    cterm=NONE
+hi StatusLineNC     guifg=black       guibg=#202020 gui=NONE      ctermfg=249         ctermbg=darkgray    cterm=NONE  
 
 hi Folded           guifg=#a0a8b0     guibg=#384048     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi Title            guifg=#f6f3e8     guibg=NONE        gui=bold      ctermfg=NONE        ctermbg=NONE        cterm=NONE
