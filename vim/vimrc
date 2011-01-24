@@ -43,9 +43,10 @@ set laststatus=2                " Always show the status line
 set showcmd                     " Show the current command in the lower right corner
 set showmode                    " Show the current mode
 set foldmethod=marker           " Set the folding method to use inline markers
+set completeopt=longest,menuone " Omnicompletion customizations
+set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
 set grepprg=ack                 " Use ack for grepping instead of vimgrep
 set grepformat=%f:%l:%m
-set completeopt=longest,menuone " Omnicompletion customizations
 set listchars=tab:>#,eol:$,trail:.
 
 " PLUGIN SETTINGS
