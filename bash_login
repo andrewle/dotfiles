@@ -1,0 +1,32 @@
+#!/usr/bin/bash
+
+# Environment #############################
+MYSQL="/usr/local/mysql/bin"
+PGSQL="/usr/local/pgsql/bin"
+RUBYGEMS="/usr/local/lib/ruby/gems/1.8/gems"
+
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+export SCRIPTS="/Users/andrewle/Library/Scripts/Applications/Terminal"
+export PATH="$PATH:/usr/local/sbin:$MYSQL:$PGSQL:$SCRIPTS:$RUBYGEMS"
+export CLICOLOR=true
+
+# Git Settings #############################
+export GITHUB="git@github.com"
+alias sshgit="ssh $GIT"
+
+# Command Aliases ##########################
+alias firefox=/Applications/Internet/Firefox.app/Contents/MacOS/firefox-bin
+alias preview="open -a preview"
+
+function gitroot {
+  cd $(git rev-parse --show-cdup)
+}
+
+# Include secured settings file
+source ~/.dotfiles/secure
+
+# RVM - Ruby Version Manager
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+# End of file stuff that's always here
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
