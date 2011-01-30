@@ -7,3 +7,6 @@
 [submodule "vim/bundle/ruby-refactoring"]
 	path = vim/bundle/ruby-refactoring
 	url = https://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "vim/bundle/makegreen"]
+	path = vim/bundle/makegreen
+	url = https://github.com/reinh/vim-makegreen.git
