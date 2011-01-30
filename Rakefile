@@ -4,6 +4,7 @@ task :install do
 
   `ln -s #{pwd}/bash_login ~/.bash_login`
   `ln -s #{pwd}/ackrc ~/.ackrc`
+  `ln -s #{pwd}/tmux.conf ~/.tmux.conf`
   `ln -s #{pwd}/git/gitignore ~/.gitignore`
 
   # Vim
@@ -16,6 +17,6 @@ end
 
 desc 'Uninstall installed dotfile symlinks'
 task :uninstall do
-  syms = %w{ .bash_login .ackrc .gitignore .vim .vimrc }
+  syms = %w{ .bash_login .ackrc .tmux.conf .gitignore .vim .vimrc }
   syms.each { |f| `rm ~/#{f}` }
 end
