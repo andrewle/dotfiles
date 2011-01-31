@@ -17,6 +17,7 @@ alias sshgit="ssh $GIT"
 # Command Aliases ##########################
 alias firefox=/Applications/Internet/Firefox.app/Contents/MacOS/firefox-bin
 alias preview="open -a preview"
+alias dotfiles="cd ~/.dotfiles"
 
 function gitroot {
   cd $(git rev-parse --show-cdup)
