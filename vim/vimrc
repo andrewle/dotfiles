@@ -159,6 +159,12 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 "}}}
 
+" VISUAL MODE KEY MAPPINGS"{{{
+"
+vnoremap <c-j> 5gj
+nnoremap <c-k> 5gk
+"}}}
+
 " COMMAND MODE KEY MAPPINGS"{{{
 " 
 " Map :W to :w so vim stops complaining about W
