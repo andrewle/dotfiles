@@ -70,6 +70,9 @@ map <Leader>] <Plug>MakeGreen
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 autocmd BufNewFile,BufRead *_test.rb compiler rubyunit 
 
+" File types
+autocmd BufNewFile,BufRead *.aspx :set ft=html
+
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 "
 if has("gui_running")
@@ -162,7 +165,7 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 " VISUAL MODE KEY MAPPINGS"{{{
 "
 vnoremap <c-j> 5gj
-nnoremap <c-k> 5gk
+vnoremap <c-k> 5gk
 "}}}
 
 " COMMAND MODE KEY MAPPINGS"{{{
