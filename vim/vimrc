@@ -86,9 +86,6 @@ if !has("gui_running")
   " I'm using iTerm2, declare that I've got 256 colors
   set t_Co=256
   colorscheme ir_black
-
-  " Don't show the cursor underline/highlighting
-  set nocursorline
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -115,8 +112,9 @@ nnoremap <c-j> 5gj
 nnoremap <c-k> 5gk
 
 " FuzzyFinder settings
-map <leader>t :FuzzyFinderTextMate<CR>
+nnoremap <silent> <C-f><C-r> :FuzzyFinderRenewCache<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
+map <leader>t :FuzzyFinderTextMate<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
