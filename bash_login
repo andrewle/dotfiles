@@ -7,7 +7,7 @@ RUBYGEMS="/usr/local/lib/ruby/gems/1.8/gems"
 
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 export SCRIPTS="/Users/andrewle/Library/Scripts/Applications/Terminal"
-export PATH="$PATH:/usr/local/sbin:$MYSQL:$PGSQL:$SCRIPTS:$RUBYGEMS"
+export PATH="~/bin:$PATH:/usr/local/sbin:$MYSQL:$PGSQL:$SCRIPTS:$RUBYGEMS"
 export CLICOLOR=true
 
 # Git Settings #############################
