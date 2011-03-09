@@ -3,4 +3,4 @@
 --context=1
 --follow
 --group
---type-set=asp=.aspx
+--type-set=asp=.aspx,.ascx
