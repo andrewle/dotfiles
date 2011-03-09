@@ -65,7 +65,7 @@ let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 " MakeGreen
-map <Leader>] <Plug>MakeGreen
+map <silent> <Leader>] :call MakeGreen()<cr>
 
 " Compilers for MakeGreen
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
