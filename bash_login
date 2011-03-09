@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+PS1='[\u@\h:\W] '
+
 # Environment #############################
 MYSQL="/usr/local/mysql/bin"
 PGSQL="/usr/local/pgsql/bin"
