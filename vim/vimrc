@@ -48,6 +48,7 @@ set timeoutlen=250              " Short map keys timeout keeps the ui feeling sn
 set grepprg=ack                 " Use ack for grepping instead of vimgrep
 set grepformat=%f:%l:%m
 set listchars=tab:>#,eol:$,trail:.
+set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 
 " PLUGIN SETTINGS
 "
@@ -165,6 +166,7 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 "
 vnoremap <c-j> 5gj
 vnoremap <c-k> 5gk
+vnoremap <c-u> :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<cr>:noh<cr>
 "}}}
 
 " COMMAND MODE KEY MAPPINGS"{{{
@@ -174,16 +176,12 @@ command! W :w
 
 " allow command line editing like emacs
 cnoremap <C-A>      <Home>
-cnoremap <C-B>      <Left>
 cnoremap <C-E>      <End>
-cnoremap <C-F>      <Right>
-cnoremap <C-N>      <End>
+cnoremap <C-N>      <Down>
 cnoremap <C-P>      <Up>
 cnoremap <ESC>b     <S-Left>
-cnoremap <ESC><C-B> <S-Left>
 cnoremap <ESC>f     <S-Right>
-cnoremap <ESC><C-F> <S-Right>
-cnoremap <ESC><C-H> <C-W>
+set cedit=<C-F>
 "}}}
 
 if has("autocmd")"{{{
