@@ -135,6 +135,9 @@ nmap <C-q> gwap
 noremap <silent> <leader>n :bn<CR>
 noremap <silent> <leader>p :bp<CR>
 
+noremap <silent> <leader>nt :tabnext<CR>
+noremap <silent> <leader>pt :tabprev<CR>
+
 " Shorcut for the scratch.vim scratch buffer
 noremap <silent> <leader>sc :Scratch<CR>
 
