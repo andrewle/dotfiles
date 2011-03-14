@@ -210,7 +210,7 @@ hi link javaScriptNumber      Number
 hi  link csXmlTag             Keyword      
 
 "Invisible character colors
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+highlight NonText guifg=#4a4a59 ctermfg=black
+highlight SpecialKey guifg=#4a4a59 ctermfg=black
 
 " Special for PHP
