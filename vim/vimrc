@@ -44,11 +44,11 @@ set showcmd                     " Show the current command in the lower right co
 set showmode                    " Show the current mode
 set foldmethod=marker           " Set the folding method to use inline markers
 set completeopt=longest,menuone " Omnicompletion customizations
+set complete-=i                 " Disable the use of included files in default autocompletion
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
-set grepprg=ack                 " Use ack for grepping instead of vimgrep
+set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 set grepformat=%f:%l:%m
 set listchars=tab:>#,eol:$,trail:.
-set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 
 " PLUGIN SETTINGS
 "
@@ -74,6 +74,7 @@ autocmd BufNewFile,BufRead *_test.rb compiler rubyunit
 " File types
 autocmd BufNewFile,BufRead *.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
+autocmd BufNewFile,BufRead *.pjs :set ft=processing
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 "
@@ -88,6 +89,7 @@ if !has("gui_running")
   " I'm using iTerm2, declare that I've got 256 colors
   set t_Co=256
   colorscheme ir_black
+  " colorscheme jellybeans
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
