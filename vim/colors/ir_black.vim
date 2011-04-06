@@ -195,11 +195,15 @@ hi link xmlEndTag       Identifier
 " Special for HTML
 hi link htmlTag         Keyword 
 hi link htmlTagName     Conditional 
-hi link htmlEndTag      Identifier 
+hi link htmlEndTag      Keyword 
+hi link htmlSpecialChar Constant
 
+" Special for CSS
+hi link cssImportant Todo 
 
 " Special for Javascript
 hi link javaScriptNumber      Number 
+hi link javaScriptOperator    Keyword 
 
 
 " Special for Python
