@@ -21,6 +21,7 @@ alias preview="open -a preview"
 alias dotfiles="cd ~/.dotfiles"
 alias gr=gitroot
 alias r=rails
+alias tmr="tmux attach-session"
 
 function gitroot {
   cd $(git rev-parse --show-toplevel)

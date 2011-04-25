@@ -31,7 +31,6 @@ set autoindent                  "
 set linebreak                   " 
 set number                      " 
 set cursorline                  " 
-set wildignore=*.swp            " 
 set nobackup                    " do not keep a backup file, use an SCM instead
 set history=50                  " keep 50 lines of command line history
 set ruler                       " show the cursor position all the time
@@ -49,15 +48,16 @@ set timeoutlen=250              " Short map keys timeout keeps the ui feeling sn
 set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 set grepformat=%f:%l:%m
 set listchars=tab:>#,eol:$,trail:.
+set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 
 " PLUGIN SETTINGS
 "
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 
-" FuzzyFinder Plugin
-let g:fuzzy_ignore = "*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf"
-let g:fuzzy_matching_limit = 20
+" Command-T Plugin
+nmap <silent> <Leader>g :CommandT<CR>
+nmap <silent> <Leader>b :CommandTBuffer<CR>
 
 " SuperTab
 let g:SuperTabCrMapping = 1
