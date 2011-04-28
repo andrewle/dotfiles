@@ -58,6 +58,7 @@ let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 " Command-T Plugin
 nmap <silent> <Leader>g :CommandT<CR>
 nmap <silent> <Leader>b :CommandTBuffer<CR>
+let g:CommandTMaxHeight = 15
 
 " SuperTab
 let g:SuperTabCrMapping = 1
@@ -114,11 +115,6 @@ nnoremap k gk
 " C-J and C-K move over lines a bit faster
 nnoremap <c-j> 5gj
 nnoremap <c-k> 5gk
-
-" FuzzyFinder settings
-nnoremap <silent> <C-f><C-r> :FuzzyFinderRenewCache<CR>
-map <leader>b :FuzzyFinderBuffer<CR>
-map <leader>t :FuzzyFinderTextMate<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
