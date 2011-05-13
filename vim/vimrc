@@ -55,10 +55,16 @@ set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 
-" Command-T Plugin
-nmap <silent> <Leader>g :CommandT<CR>
-nmap <silent> <Leader>b :CommandTBuffer<CR>
+" Command-T Plugin and File Navigation
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+nmap <leader>g :CommandTFlush<cr>\|:CommandT<cr>
+nmap <leader>gb :CommandTBuffer<cr>
+nmap <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+nmap <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
+nmap <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
 let g:CommandTMaxHeight = 15
+
+nnoremap <leader><leader> <C-^>
 
 " SuperTab
 let g:SuperTabCrMapping = 1
@@ -66,14 +72,14 @@ let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 " MakeGreen
-map <silent> <Leader>] :call MakeGreen()<cr>
+map <silent> <leader>] :call MakeGreen()<cr>
 
 " Compilers for MakeGreen
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 autocmd BufNewFile,BufRead *_test.rb compiler rubyunit 
 
 " File types
-autocmd BufNewFile,BufRead *.aspx,*.ascx :set ft=html
+autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
 autocmd BufNewFile,BufRead *.pjs :set ft=processing
 
