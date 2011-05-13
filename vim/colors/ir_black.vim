@@ -214,7 +214,5 @@ hi link javaScriptOperator    Keyword
 hi  link csXmlTag             Keyword      
 
 "Invisible character colors
-highlight NonText guifg=#4a4a59 ctermfg=black
-highlight SpecialKey guifg=#4a4a59 ctermfg=black
-
-" Special for PHP
+highlight NonText guifg=#4a4a59 ctermfg=236
+highlight SpecialKey guifg=#4a4a59 ctermfg=236
