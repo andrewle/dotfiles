@@ -57,11 +57,12 @@ let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 
 " Command-T Plugin and File Navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-nmap <leader>g :CommandTFlush<cr>\|:CommandT<cr>
+nmap <leader>f :CommandTFlush<cr>
+nmap <leader>g :CommandT<cr>
 nmap <leader>gb :CommandTBuffer<cr>
-nmap <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
-nmap <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
-nmap <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
+nmap <leader>gf :CommandT %%<cr>
+nmap <leader>gj :CommandT public/javascripts<cr>
+nmap <leader>gs :CommandT public/stylesheets<cr>
 let g:CommandTMaxHeight = 15
 
 nnoremap <leader><leader> <C-^>
