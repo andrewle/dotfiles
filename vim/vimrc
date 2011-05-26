@@ -72,9 +72,6 @@ let g:SuperTabCrMapping = 1
 let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
-" MakeGreen
-map <silent> <leader>] :call MakeGreen()<cr>
-
 " Compilers for MakeGreen
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 autocmd BufNewFile,BufRead *_test.rb compiler rubyunit 
@@ -108,6 +105,42 @@ endif
 if has('mouse')
   set mouse=a
 endif
+
+" Running Ruby Tests
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo
+    if filereadable("script/test")
+        exec ":!script/test " . a:filename
+    else
+        exec ":!rspec " . a:filename
+    end
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
+    if in_spec_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+nmap <leader>] :call RunTestFile()<cr>
 
 " NORMAL MODE KEY MAPPINGS"{{{
 " 
