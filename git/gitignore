@@ -3,3 +3,6 @@
 *.swp
 *.log
 admin/public/message-images
+TODO.md
+*--local.*
+.rvmrc
