@@ -15,6 +15,25 @@ call pathogen#helptags()
 "
 let g:snips_author = "Andrew Le" " Set snipmate author 
 
+filetype plugin indent on
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+augroup END
+
 set encoding=utf-8
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
@@ -65,6 +84,7 @@ nmap <leader>gj :CommandT public/javascripts<cr>
 nmap <leader>gs :CommandT public/stylesheets<cr>
 let g:CommandTMaxHeight = 15
 
+" Fast alternate file switching
 nnoremap <leader><leader> <C-^>
 
 " SuperTab
@@ -75,11 +95,16 @@ let g:SuperTabMappingTabLiteral = '<s-tab>'
 " Compilers for MakeGreen
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 autocmd BufNewFile,BufRead *_test.rb compiler rubyunit 
+map <silent> <leader>makegreen :call MakeGreen()<cr>
 
 " File types
 autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
 autocmd BufNewFile,BufRead *.pjs :set ft=processing
+autocmd BufNewFile,BufRead *.radius :set ft=html
+autocmd BufNewFile,BufRead *.cron :set ft=crontab
+autocmd BufNewFile,BufRead *.php :set sw=4
+autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
@@ -87,21 +112,13 @@ set background=dark
 if has("gui_running")
   set guioptions=egmrt
   set guifont=Inconsolata:h14
-  set listchars=tab:▸\ ,eol:¬,trail:.
   colorscheme ir_black
 else
   set t_Co=256
-  colorscheme ir_black
+  colorscheme ale_solarized_dark
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-" if &t_Co > 2 || has("gui_running")
-"   hi MatchParen guifg=#f6f3e8 guibg=#857b6f gui=BOLD 
-"                 \\ ctermfg=cyan ctermbg=darkgray cterm=NONE
-" endif
-
-" In many termioal emulators the mouse works just fine, thus enable it.
+" In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
@@ -114,7 +131,7 @@ function! RunTests(filename)
     if filereadable("script/test")
         exec ":!script/test " . a:filename
     else
-        exec ":!rspec " . a:filename
+        exec ":!bundle exec rspec " . a:filename
     end
 endfunction
 
@@ -132,7 +149,8 @@ function! RunTestFile(...)
 
     " Run the tests for the previously-marked file.
     let in_spec_file = match(expand("%"), '_spec.rb$') != -1
-    if in_spec_file
+    let in_test_file = match(expand("%"), '_test.rb$') != -1
+    if in_spec_file || in_test_file
         call SetTestFile()
     elseif !exists("t:grb_test_file")
         return
@@ -141,8 +159,9 @@ function! RunTestFile(...)
 endfunction
 
 nmap <leader>] :call RunTestFile()<cr>
+nmap <leader>t :call SetTestFile()<cr>
 
-" NORMAL MODE KEY MAPPINGS"{{{
+" NORMAL MODE KEY MAPPINGS
 " 
 " Move up and down over screen lines instead of file lines
 nnoremap j gj
@@ -183,30 +202,29 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-"}}}
 
-" INSERT MODE KEY MAPPINGS"{{{
+
+" INSERT MODE KEY MAPPINGS
 " 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-inoremap <C-E> <Tab>
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-"}}}
 
-" VISUAL MODE KEY MAPPINGS"{{{
+
+" VISUAL MODE KEY MAPPINGS
 "
 vnoremap <c-j> 5gj
 vnoremap <c-k> 5gk
-vnoremap <c-u> :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<cr>:noh<cr>
-"}}}
+" vnoremap <c-u> :s/\\<\\(\\w\\)\\(\\w*\\)\\>/\\u\\1\\L\\2/g<cr>:noh<cr>
 
-" COMMAND MODE KEY MAPPINGS"{{{
+
+" COMMAND MODE KEY MAPPINGS
 " 
 " Map :W to :w so vim stops complaining about W
 command! W :w
@@ -219,44 +237,12 @@ cnoremap <C-P>      <Up>
 cnoremap <ESC>b     <S-Left>
 cnoremap <ESC>f     <S-Right>
 set cedit=<C-F>
-"}}}
 
-if has("autocmd")"{{{
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " PHP syntax check on the current file
-  autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-endif " has("autocmd")"}}}
-
-" DiffOrig command (PS - I want a better one)"{{{
+" DiffOrig command (PS - I want a better one)
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif"}}}
+      \ | wincmd p | diffthis
+endif
