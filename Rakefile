@@ -7,6 +7,7 @@ task :install do
   `ln -s #{pwd}/tmux.conf ~/.tmux.conf`
   `ln -s #{pwd}/gemrc ~/.gemrc`
   `ln -s #{pwd}/git/gitignore ~/.gitignore`
+  `ln -s #{pwd}/git/gitconfig ~/.gitconfig`
 
   # Vim
   `ln -s #{pwd}/vim ~/.vim`
@@ -18,6 +19,6 @@ end
 
 desc 'Uninstall installed dotfile symlinks'
 task :uninstall do
-  syms = %w{ .bash_login .ackrc .tmux.conf .gitignore .vim .vimrc .gemrc }
+  syms = %w{ .bash_login .ackrc .tmux.conf .gitignore .gitconfig .vim .vimrc .gemrc }
   syms.each { |f| `rm ~/#{f}` }
 end

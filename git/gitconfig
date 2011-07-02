@@ -1,0 +1,29 @@
+[user]
+	name = Andrew Le
+	email = andrew@andrewdle.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	aa = add --all
+    dc = diff --cached
+    l = log -10 --pretty=format:'%C(yellow)%h%Creset : %s %C(green)(%ar)%Creset %C(blue)<%an>%Creset' --date-order --graph
+[merge]
+	tool = opendiff
+	summary = true
+[core]
+	excludesfile = /Users/andrewle/.gitignore
+	autocrlf = false
+[push]
+	default = tracking
+[github]
+	user = andrewle 
+	token = 7b14a4d940e3d47d3dec0c6c109cbf4b
+[rerere]
+	enabled = 1
