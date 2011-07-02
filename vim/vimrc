@@ -13,27 +13,7 @@ call pathogen#helptags()
 
 " SETTINGS
 "
-let g:snips_author = "Andrew Le" " Set snipmate author 
-
 filetype plugin indent on
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-augroup END
-
 set encoding=utf-8
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
@@ -73,6 +53,7 @@ set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 "
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
+let g:snips_author = "Andrew Le" " Set snipmate author 
 
 " Command-T Plugin and File Navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -123,44 +104,6 @@ if has('mouse')
   set mouse=a
 endif
 
-" Running Ruby Tests
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo
-    if filereadable("script/test")
-        exec ":!script/test " . a:filename
-    else
-        exec ":!bundle exec rspec " . a:filename
-    end
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
-    let in_test_file = match(expand("%"), '_test.rb$') != -1
-    if in_spec_file || in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-nmap <leader>] :call RunTestFile()<cr>
-nmap <leader>t :call SetTestFile()<cr>
-
 " NORMAL MODE KEY MAPPINGS
 " 
 " Move up and down over screen lines instead of file lines
@@ -171,18 +114,12 @@ nnoremap k gk
 nnoremap <c-j> 5gj
 nnoremap <c-k> 5gk
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
 " Edit the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Turn off that stupid highlight search
 nmap <silent> <leader>/ :noh<CR>
-
-" Rewrap the current paragraph
-nmap <C-q> gwap
 
 " Easy buffer navigation (next buffer and previous buffer)
 noremap <silent> <leader>n :bn<CR>
@@ -237,6 +174,22 @@ cnoremap <C-P>      <Up>
 cnoremap <ESC>b     <S-Left>
 cnoremap <ESC>f     <S-Right>
 set cedit=<C-F>
+
+augroup vimrcEx
+  au!
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+augroup END
 
 " DiffOrig command (PS - I want a better one)
 " Convenient command to see the difference between the current buffer and the
