@@ -13,3 +13,4 @@ hi! link rubyInstanceVariable  Identifier
 hi! link rubyGlobalVariable    Identifier
 hi! link rubyClassVariable     Identifier
 hi! link rubyConstant          Type
+hi visual ctermfg=none ctermbg=235  cterm=none

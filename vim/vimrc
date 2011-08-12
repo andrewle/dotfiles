@@ -14,6 +14,7 @@ call pathogen#helptags()
 " SETTINGS
 "
 filetype plugin indent on
+compiler ruby                   " Enable compiler support for ruby
 set encoding=utf-8
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
