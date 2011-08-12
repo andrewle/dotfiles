@@ -13,7 +13,7 @@
 	br = branch
 	aa = add --all
     dc = diff --cached
-    l = log -10 --pretty=format:'%C(yellow)%h%Creset : %s %C(green)(%ar)%Creset %C(blue)<%an>%Creset' --date-order --graph
+    l = log -20 --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(blue)<%an>%Creset' --date-order --graph
 [merge]
 	tool = opendiff
 	summary = true
