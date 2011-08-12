@@ -81,6 +81,7 @@ map <silent> <leader>makegreen :call MakeGreen()<cr>
 " File types
 autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
+autocmd BufNewFile,BufRead Vagrantfile :set ft=ruby
 autocmd BufNewFile,BufRead *.pjs :set ft=processing
 autocmd BufNewFile,BufRead *.radius :set ft=html
 autocmd BufNewFile,BufRead *.cron :set ft=crontab
@@ -139,6 +140,15 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+function! SwapArguments()
+  :normal viwy
+  :execute "normal df\<space>"
+  :execute "normal eli,\<space>"
+  :stopinsert
+  :normal ph2xb
+endfunction
+nnoremap <leader>rs :call SwapArguments()<cr>
 
 
 " INSERT MODE KEY MAPPINGS
