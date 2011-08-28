@@ -8,15 +8,13 @@ MYSQL="/usr/local/mysql/bin"
 PGSQL="/usr/local/pgsql/bin"
 
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-export SCRIPTS="/Users/andrewle/Library/Scripts/Applications/Terminal"
 export GOBIN="~/Projects/golang/bin"
-export PATH="~/bin:$PATH:/usr/local/sbin:$MYSQL:$PGSQL:$SCRIPTS:$GOBIN"
+export PATH="~/bin:$PATH:/usr/local/sbin:$MYSQL:$PGSQL:$GOBIN"
 export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # Git Settings #############################
 export GITHUB="git@github.com"
-alias sshgit="ssh $GIT"
 
 # Command Aliases ##########################
 alias firefox=/Applications/Firefox.app/Contents/MacOS/firefox-bin
@@ -31,7 +29,7 @@ function gitroot {
 }
 
 # Include secured settings file
-source ~/.dotfiles/secure
+source ~/.dotfiles/secure/env.sh
 source ~/.dotfiles/git/git-completion.bash
 
 # RVM - Ruby Version Manager
