@@ -30,6 +30,7 @@ set textwidth=0                 "
 set autoindent                  " 
 set linebreak                   " 
 set number                      " 
+set numberwidth=5               " Sets the gutter width for line numbers
 set cursorline                  " 
 set nobackup                    " do not keep a backup file, use an SCM instead
 set history=50                  " keep 50 lines of command line history
@@ -41,7 +42,6 @@ set ch=2                        " Make command line two lines high
 set laststatus=2                " Always show the status line
 set showcmd                     " Show the current command in the lower right corner
 set showmode                    " Show the current mode
-set foldmethod=marker           " Set the folding method to use inline markers
 set completeopt=longest,menuone " Omnicompletion customizations
 set complete-=i                 " Disable the use of included files in default autocompletion
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
@@ -62,8 +62,10 @@ nmap <leader>f :CommandTFlush<cr>
 nmap <leader>g :CommandT<cr>
 nmap <leader>gb :CommandTBuffer<cr>
 nmap <leader>gf :CommandT %%<cr>
-nmap <leader>gj :CommandT public/javascripts<cr>
-nmap <leader>gs :CommandT public/stylesheets<cr>
+nmap <leader>gp :CommandT public<cr>
+nmap <leader>gm :CommandT app/models<cr>
+nmap <leader>gc :CommandT app/controllers<cr>
+nmap <leader>gv :CommandT app/views<cr>
 let g:CommandTMaxHeight = 15
 
 " Fast alternate file switching
@@ -86,7 +88,7 @@ autocmd BufNewFile,BufRead Vagrantfile :set ft=ruby
 autocmd BufNewFile,BufRead *.pjs :set ft=processing
 autocmd BufNewFile,BufRead *.radius :set ft=html
 autocmd BufNewFile,BufRead *.cron :set ft=crontab
-autocmd BufNewFile,BufRead *.php :set sw=4
+autocmd BufNewFile,BufRead *.json :set ft=javascript
 autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
