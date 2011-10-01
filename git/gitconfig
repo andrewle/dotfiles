@@ -19,7 +19,7 @@
 	summary = true
 [core]
 	excludesfile = /Users/andrewle/.gitignore
-	autocrlf = false
+	autocrlf = input
 [push]
 	default = tracking
 [github]
