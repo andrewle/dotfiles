@@ -29,7 +29,7 @@ set linebreak
 set number
 set cursorline
 set grepformat=%f:%l:%m
-set listchars=tab:>#,eol:$,trail:.
+set listchars=tab:▶\ ,eol:¬,trail:☠
 set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 
 set hidden                      " Be more liberal about hidden buffers
@@ -106,6 +106,7 @@ autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 syntax on
 set background=dark
 colorscheme ale_solarized_dark
+call togglebg#map("<F5>")
 
 if has("gui_running")
   set guioptions=egmrt
