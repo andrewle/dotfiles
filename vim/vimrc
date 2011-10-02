@@ -14,24 +14,27 @@ call pathogen#helptags()
 " SETTINGS
 "
 filetype plugin indent on
-compiler ruby                   " Enable compiler support for ruby
 set encoding=utf-8
+set smarttab
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set tabstop=4
+set ignorecase
+set smartcase
+set nowrap
+set textwidth=0
+set autoindent
+set linebreak
+set number
+set cursorline
+set grepformat=%f:%l:%m
+set listchars=tab:>#,eol:$,trail:.
+set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
+
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
-set smarttab                    "
-set softtabstop=2               "
-set shiftwidth=2                "
-set expandtab                   "
-set tabstop=4                   "
-set ignorecase                  "
-set smartcase                   "
-set nowrap                      "
-set textwidth=0                 "
-set autoindent                  "
-set linebreak                   "
-set number                      "
 set numberwidth=5               " Sets the gutter width for line numbers
-set cursorline                  "
 set nobackup                    " do not keep a backup file, use an SCM instead
 set history=50                  " keep 50 lines of command line history
 set ruler                       " show the cursor position all the time
@@ -46,9 +49,7 @@ set completeopt=longest,menuone " Omnicompletion customizations
 set complete-=i                 " Disable the use of included files in default autocompletion
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
 set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
-set grepformat=%f:%l:%m
-set listchars=tab:>#,eol:$,trail:.
-set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
+compiler ruby                   " Enable compiler support for ruby
 
 set statusline=
 set statusline+=[%n]\ %<                        " Buffer number
@@ -104,13 +105,13 @@ autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
 set background=dark
+colorscheme ale_solarized_dark
+
 if has("gui_running")
   set guioptions=egmrt
   set guifont=Inconsolata:h14
-  colorscheme ir_black
 else
   set t_Co=256
-  colorscheme ale_solarized_dark
 endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
@@ -131,14 +132,11 @@ nnoremap <c-k> 5gk
 " Edit the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-" Turn off that stupid highlight search
 nmap <silent> <leader>/ :noh<CR>
 
 " Easy buffer navigation (next buffer and previous buffer)
 noremap <silent> <leader>n :bn<CR>
 noremap <silent> <leader>p :bp<CR>
-
 noremap <silent> <leader>nt :tabnext<CR>
 noremap <silent> <leader>pt :tabprev<CR>
 
@@ -163,26 +161,16 @@ function! SwapArguments()
 endfunction
 nnoremap <leader>rs :call SwapArguments()<cr>
 
-
 " INSERT MODE KEY MAPPINGS
 "
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-
 " VISUAL MODE KEY MAPPINGS
 "
 vnoremap <c-j> 5gj
 vnoremap <c-k> 5gk
-" vnoremap <c-u> :s/\\<\\(\\w\\)\\(\\w*\\)\\>/\\u\\1\\L\\2/g<cr>:noh<cr>
-
 
 " COMMAND MODE KEY MAPPINGS
 "
