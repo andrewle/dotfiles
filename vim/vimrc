@@ -50,6 +50,16 @@ set grepformat=%f:%l:%m
 set listchars=tab:>#,eol:$,trail:.
 set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 
+set statusline=
+set statusline+=[%n]\ %<                        " Buffer number
+set statusline+=%.99f\                          " File path
+set statusline+=%(%{fugitive#statusline()}\ i%) " Git branch if any
+set statusline+=%w%m%r                          " Flags: window type, is modified, read-only
+set statusline+=%y                              " File type
+set statusline+=%=                              " Right align everything past here
+set statusline+=%-16(\ %l,%c\|%{col('$')-1}\ %) " show line number, cols, total cols
+set statusline+=%P                              " Percentage through file
+
 " PLUGIN SETTINGS
 "
 " Hide the following file name patterns from the builtin browser
