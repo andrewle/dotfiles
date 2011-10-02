@@ -18,20 +18,20 @@ compiler ruby                   " Enable compiler support for ruby
 set encoding=utf-8
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
-set smarttab                    " 
-set softtabstop=2               " 
-set shiftwidth=2                " 
-set expandtab                   " 
-set tabstop=4                   " 
-set ignorecase                  " 
-set smartcase                   " 
-set nowrap                      " 
-set textwidth=0                 " 
-set autoindent                  " 
-set linebreak                   " 
-set number                      " 
+set smarttab                    "
+set softtabstop=2               "
+set shiftwidth=2                "
+set expandtab                   "
+set tabstop=4                   "
+set ignorecase                  "
+set smartcase                   "
+set nowrap                      "
+set textwidth=0                 "
+set autoindent                  "
+set linebreak                   "
+set number                      "
 set numberwidth=5               " Sets the gutter width for line numbers
-set cursorline                  " 
+set cursorline                  "
 set nobackup                    " do not keep a backup file, use an SCM instead
 set history=50                  " keep 50 lines of command line history
 set ruler                       " show the cursor position all the time
@@ -64,7 +64,7 @@ set statusline+=%P                              " Percentage through file
 "
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
-let g:snips_author = "Andrew Le" " Set snipmate author 
+let g:snips_author = "Andrew Le" " Set snipmate author
 
 " Command-T Plugin and File Navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -88,7 +88,7 @@ let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 " Compilers for MakeGreen
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-autocmd BufNewFile,BufRead *_test.rb compiler rubyunit 
+autocmd BufNewFile,BufRead *_test.rb compiler rubyunit
 map <silent> <leader>makegreen :call MakeGreen()<cr>
 
 " File types
@@ -119,7 +119,7 @@ if has('mouse')
 endif
 
 " NORMAL MODE KEY MAPPINGS
-" 
+"
 " Move up and down over screen lines instead of file lines
 nnoremap j gj
 nnoremap k gk
@@ -165,7 +165,7 @@ nnoremap <leader>rs :call SwapArguments()<cr>
 
 
 " INSERT MODE KEY MAPPINGS
-" 
+"
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -185,7 +185,7 @@ vnoremap <c-k> 5gk
 
 
 " COMMAND MODE KEY MAPPINGS
-" 
+"
 " Map :W to :w so vim stops complaining about W
 command! W :w
 
