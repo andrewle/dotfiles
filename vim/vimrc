@@ -49,12 +49,11 @@ set completeopt=longest,menuone " Omnicompletion customizations
 set complete-=i                 " Disable the use of included files in default autocompletion
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
 set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
-compiler ruby                   " Enable compiler support for ruby
 
 set statusline=
 set statusline+=[%n]\ %<                        " Buffer number
 set statusline+=%.99f\                          " File path
-set statusline+=%(%{fugitive#statusline()}\ i%) " Git branch if any
+set statusline+=%(%{fugitive#statusline()}\ %) " Git branch if any
 set statusline+=%w%m%r                          " Flags: window type, is modified, read-only
 set statusline+=%y                              " File type
 set statusline+=%=                              " Right align everything past here
@@ -87,11 +86,6 @@ let g:SuperTabCrMapping = 1
 let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
-" Compilers for MakeGreen
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-autocmd BufNewFile,BufRead *_test.rb compiler rubyunit
-map <silent> <leader>makegreen :call MakeGreen()<cr>
-
 " File types
 autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
@@ -100,7 +94,6 @@ autocmd BufNewFile,BufRead *.pjs :set ft=processing
 autocmd BufNewFile,BufRead *.radius :set ft=html
 autocmd BufNewFile,BufRead *.cron :set ft=crontab
 autocmd BufNewFile,BufRead *.json :set ft=javascript
-autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
