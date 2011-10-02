@@ -29,7 +29,7 @@ set linebreak
 set number
 set cursorline
 set grepformat=%f:%l:%m
-set listchars=tab:▶\ ,eol:¬,trail:☠
+set listchars=tab:▶\ ,eol:¬
 set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 
 set hidden                      " Be more liberal about hidden buffers
@@ -125,10 +125,9 @@ endif
 " Move up and down over screen lines instead of file lines
 nnoremap j gj
 nnoremap k gk
-
-" C-J and C-K move over lines a bit faster
 nnoremap <c-j> 5gj
 nnoremap <c-k> 5gk
+nnoremap <leader>w <c-w>vzz<c-w>l
 
 " Edit the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -199,6 +198,7 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
   autocmd BufReadPost * call GoToLastEditedLine()
   autocmd BufReadPost COMMIT_EDITMSG exec "normal! gg"
+  autocmd FileType netrw setlocal nolist
 augroup END
 
 " DiffOrig command (PS - I want a better one)
