@@ -29,6 +29,7 @@ set linebreak
 set number
 set cursorline
 set grepformat=%f:%l:%m
+set grepprg=ack\ -A\ 0\ -B\ 0\ --nocolour\ --nogroup\ --column
 set listchars=tab:▶\ ,eol:¬
 set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
 
@@ -53,7 +54,6 @@ set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 set statusline=
 set statusline+=[%n]\ %<                        " Buffer number
 set statusline+=%.99f\                          " File path
-set statusline+=%(%{fugitive#statusline()}\ %) " Git branch if any
 set statusline+=%w%m%r                          " Flags: window type, is modified, read-only
 set statusline+=%y                              " File type
 set statusline+=%=                              " Right align everything past here
@@ -127,11 +127,18 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>/ :noh<CR>
 
-" Easy buffer navigation (next buffer and previous buffer)
-noremap <silent> <leader>n :bn<CR>
-noremap <silent> <leader>p :bp<CR>
-noremap <silent> <leader>nt :tabnext<CR>
-noremap <silent> <leader>pt :tabprev<CR>
+" Tell me what file I'm looking at
+map <leader>q :file<cr>
+
+" Quicker tab navigation
+noremap <leader>; :tabnext<CR>
+noremap <leader>, :tabprev<CR>
+
+" Easy quickfix list navigation
+noremap <F9> :cnext<cr>
+noremap <F7> :cprev<cr>
+noremap <S-F7> :cfirst<cr>
+noremap <S-F9> :clast<cr>
 
 " Shorcut for the scratch.vim scratch buffer
 noremap <silent> <leader>sc :Scratch<CR>
