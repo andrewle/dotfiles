@@ -2,7 +2,14 @@
 .DS_Store
 *.swp
 *.log
-admin/public/message-images
 TODO.md
 *--local.*
 .rvmrc
+admin/db/*.sql
+*.rbc
+.rbx
+admin/public/message_images
+admin/public/attachments
+admin/test/fixtures/files/exports
+admin/tmp
+admin/vendor/rails
