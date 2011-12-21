@@ -1,0 +1,8 @@
+\timing
+\pset pager on
+\pset null '(null)'
+\pset linestyle unicode
+
+\set HISTSIZE 10000
+\set ON_ERROR_ROLLBACK 1
+
