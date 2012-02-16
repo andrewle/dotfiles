@@ -186,7 +186,7 @@ map <leader>n :call RenameFile()<cr>
 " Shorcut for the scratch.vim scratch buffer
 noremap <silent> <leader>sc :Scratch<CR>
 
-command! KillWhitespace :normal :%s/\s+$//g<cr><c-o><cr>
+command! KillWhitespace :%s/\s\+$//g
 command! Splat :set paste|:normal "*p|:set nopaste<cr>
 
 " INSERT MODE KEY MAPPINGS
