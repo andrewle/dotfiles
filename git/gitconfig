@@ -24,9 +24,9 @@
 	excludesfile = /Users/andrewle/.gitignore
 	autocrlf = input
 [push]
-	default = tracking
+	default = upstream
 [github]
 	user = andrewle 
 	token = 7b14a4d940e3d47d3dec0c6c109cbf4b
 [rerere]
-	enabled = 1
+	enabled = true

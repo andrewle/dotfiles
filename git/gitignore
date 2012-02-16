@@ -13,3 +13,4 @@ admin/public/attachments
 admin/test/fixtures/files/exports
 admin/tmp
 admin/vendor/rails
+admin/script/maint
