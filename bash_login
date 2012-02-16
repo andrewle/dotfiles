@@ -25,7 +25,7 @@ alias preview="open -a preview"
 alias dotfiles="cd ~/.dotfiles"
 alias gr=gitroot
 alias r=rails
-alias rails-src="cd ~/Projects/src/rails"
+alias rails-src="cd ~/Projects/rails"
 alias tmr="tmux attach-session"
 
 # Include secured settings file
