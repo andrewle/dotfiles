@@ -51,6 +51,12 @@ set complete-=i                 " Disable the use of included files in default a
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
 set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 
+" Keep more context when scrolling off the end of a buffer
+set scrolloff=3
+
+" Store temporary files in a central spo
+set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp
+
 set statusline=
 set statusline+=[%n]\ %<                        " Buffer number
 set statusline+=%.99f\                          " File path
@@ -87,6 +93,7 @@ let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 " File types
+autocmd BufReadPost * call GoToLastEditedLine()
 autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
 autocmd BufNewFile,BufRead Vagrantfile :set ft=ruby
@@ -94,19 +101,16 @@ autocmd BufNewFile,BufRead *.pjs :set ft=processing
 autocmd BufNewFile,BufRead *.radius :set ft=html
 autocmd BufNewFile,BufRead *.cron :set ft=crontab
 autocmd BufNewFile,BufRead *.json :set ft=javascript
+autocmd BufReadPost COMMIT_EDITMSG exec "normal! gg"
+autocmd FileType text setlocal textwidth=78
+autocmd FileType netrw setlocal nolist
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
 set background=dark
+set t_Co=256
 colorscheme ale_solarized_dark
 call togglebg#map("<F5>")
-
-if has("gui_running")
-  set guioptions=egmrt
-  set guifont=Inconsolata:h14
-else
-  set t_Co=256
-endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -135,31 +139,55 @@ noremap <leader>; :tabnext<CR>
 noremap <leader>, :tabprev<CR>
 
 " Easy quickfix list navigation
+noremap <F8> :call ToggleList('Quickfix List', 'c')<cr>
 noremap <F9> :cnext<cr>
 noremap <F7> :cprev<cr>
 noremap <S-F7> :cfirst<cr>
 noremap <S-F9> :clast<cr>
 
+function! GetBufferList()
+  redir =>buflist
+  silent! ls
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'))
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
 " Shorcut for the scratch.vim scratch buffer
 noremap <silent> <leader>sc :Scratch<CR>
 
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-function! SwapArguments()
-  :normal viwy
-  :execute "normal df\<space>"
-  :execute "normal eli,\<space>"
-  :stopinsert
-  :normal ph2xb
-endfunction
-nnoremap <leader>rs :call SwapArguments()<cr>
+command! KillWhitespace :normal :%s/\s+$//g<cr><c-o><cr>
+command! Splat :set paste|:normal "*p|:set nopaste<cr>
 
 " INSERT MODE KEY MAPPINGS
 "
@@ -192,20 +220,3 @@ function! GoToLastEditedLine()
   endif
 endfunction
 
-augroup vimrcEx
-  au!
-
-  autocmd FileType text setlocal textwidth=78
-  autocmd BufReadPost * call GoToLastEditedLine()
-  autocmd BufReadPost COMMIT_EDITMSG exec "normal! gg"
-  autocmd FileType netrw setlocal nolist
-augroup END
-
-" DiffOrig command (PS - I want a better one)
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-      \ | wincmd p | diffthis
-endif
