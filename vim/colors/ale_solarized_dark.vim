@@ -13,7 +13,14 @@ hi! link rubyInstanceVariable  Identifier
 hi! link rubyGlobalVariable    Identifier
 hi! link rubyClassVariable     Identifier
 hi! link rubyConstant          Type
+
 hi visual     ctermfg=none ctermbg=235  cterm=none
+hi SignColumn ctermfg=none ctermbg=none cterm=none
 
 hi NonText    ctermfg=235 ctermbg=none
 hi SpecialKey ctermfg=235 ctermbg=none
+
+hi clear SpellBad
+hi SpellBad ctermfg=88 cterm=underline
+
+hi ErrorLine ctermbg=52 ctermfg=white
