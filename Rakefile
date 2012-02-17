@@ -2,7 +2,7 @@ mappings = {
   "bash_login"    => "~/.bash_login",
   "ackrc"         => "~/.ackrc",
   "tmux.conf"     => "~/.tmux.conf",
-  "gemrc"         => "~/.gemrc",
+  "secure/gemrc"  => "~/.gemrc",
   "git/gitignore" => "~/.gitignore",
   "git/gitconfig" => "~/.gitconfig",
   "psqlrc"        => "~/.psqlrc",
@@ -16,16 +16,15 @@ task :install do
 
   mappings.each_pair do |src, dest|
     if !File.exist?(File.expand_path(dest))
-      puts "Installing #{dest}"
-      `ln -s #{pwd}/#{src} #{dest}`
+      sh "ln -s #{pwd}/#{src} #{dest}"
     end
   end
 
-  `git submodule update --init`
+  sh "git submodule update --init"
 end
 
 desc 'Uninstall installed dotfile symlinks'
 task :uninstall do
-  mappings.values.each { |f| `rm #{f}` }
+  mappings.values.each { |f| sh "rm #{f}" }
 end
 
