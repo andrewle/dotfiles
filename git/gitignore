@@ -8,6 +8,7 @@ TODO.md
 admin/db/*.sql
 *.rbc
 .rbx
+TAGS
 admin/public/message_images
 admin/public/attachments
 admin/test/fixtures/files/exports
