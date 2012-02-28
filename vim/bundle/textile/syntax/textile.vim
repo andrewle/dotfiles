@@ -46,6 +46,7 @@ syn match txtListBullet  /\v^\*+ /
 syn match txtListBullet2  /\v^(\*\*)+ /
 syn match txtListNumber  /\v^#+ /
 syn match txtListNumber2  /\v^(##)+ /
+syn match txtBlockquote2 /^> .\+/
 
 syn cluster txtBlockElement contains=txtHeader,txtBlockElement,txtFootnoteDef,txtListBullet,txtListNumber
 
