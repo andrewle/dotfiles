@@ -5,9 +5,6 @@
 command! -nargs=0 TextileRenderFile call TextileRenderBufferToFile()
 command! -nargs=0 TextileRenderTab call TextileRenderBufferToTab()
 command! -nargs=0 TextilePreview call TextileRenderBufferToPreview()
-noremap <buffer> <Leader>rp :TextilePreview<CR>
-noremap <buffer> <Leader>rf :TextileRenderFile<CR>
-noremap <buffer> <Leader>rt :TextileRenderTab<CR>
 setlocal ignorecase
 setlocal wrap
 setlocal lbr
