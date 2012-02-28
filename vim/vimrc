@@ -107,10 +107,14 @@ autocmd FileType netrw setlocal nolist
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
-set background=dark
-set t_Co=256
-colorscheme ale_solarized_dark
-call togglebg#map("<F5>")
+if has("gui_running")
+  set guioptions=egmrt
+  set guifont=Inconsolata:h18
+else
+  set t_Co=256
+  set background=dark
+  colorscheme ale_solarized_dark
+endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
