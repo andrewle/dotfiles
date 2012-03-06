@@ -6,8 +6,9 @@ function! SetTestFile()
     let g:grb_test_file=expand("%:p")
 endfunction
 
-function! SelectRubyCompiler(in_spec_file, in_test_file)
-    if a:in_spec_file
+function! SelectRubyCompiler()
+    let in_spec_file = match(g:grb_test_file, '_spec.rb$') != -1
+    if in_spec_file
       compiler rspec
     else
       compiler rubyunit
@@ -26,7 +27,7 @@ function! RunTestFile(...)
         return
     end
 
-    call SelectRubyCompiler(in_spec_file, in_test_file)
+    call SelectRubyCompiler()
     call MakeGreen(g:grb_test_file . command_suffix)
 endfunction
 
