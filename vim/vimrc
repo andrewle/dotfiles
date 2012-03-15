@@ -92,6 +92,13 @@ let g:SuperTabCrMapping = 1
 let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
 
+" Indent Guides
+nmap <leader>i :IndentGuidesToggle<cr>
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size  = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
+
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
 autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
