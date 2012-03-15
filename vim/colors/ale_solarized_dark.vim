@@ -14,7 +14,7 @@ hi! link rubyGlobalVariable    Identifier
 hi! link rubyClassVariable     Identifier
 hi! link rubyConstant          Type
 
-hi visual     ctermfg=none ctermbg=235  cterm=none
+hi visual     ctermfg=none ctermbg=236  cterm=none
 hi SignColumn ctermfg=none ctermbg=none cterm=none
 
 hi NonText    ctermfg=235 ctermbg=none
