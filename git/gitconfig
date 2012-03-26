@@ -1,29 +1,29 @@
 [user]
-	name = Andrew Le
-	email = andrew@andrewdle.com
+    name = Andrew Le
+    email = andrew@andrewdle.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	br = branch
-	aa = add --all
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    aa = add --all
     dc = diff --cached
     l = log -20 --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(blue)<%an>%Creset' --date-order --graph
     col = "!bash -lc \"git-checkout-last-branch\""
     merge-last = "!bash -lc \"git-merge-last-branch\""
     oops = reset --hard HEAD@{1}
 [merge]
-	tool = opendiff
-	summary = true
+    tool = opendiff
+    summary = true
 [core]
-	excludesfile = /Users/andrewle/.gitignore
-	autocrlf = input
+    excludesfile = /Users/andrewle/.gitignore
+    autocrlf = input
 [push]
-	default = upstream
+    default = upstream
 [rerere]
-	enabled = true
+    enabled = true
