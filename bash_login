@@ -14,7 +14,7 @@ export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PGDATA="/usr/local/pgsql/data"
 export PAGER=less
-export LESS="-RSX --tabs=4"
+export LESS="-RSXF --tabs=4"
 
 # Git Settings #############################
 export GITHUB="git@github.com"
