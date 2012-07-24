@@ -23,6 +23,7 @@
 [core]
     excludesfile = /Users/andrewle/.gitignore
     autocrlf = input
+    whitespace = trailing-space,cr-at-eol,tab-in-indent
 [push]
     default = upstream
 [rerere]
