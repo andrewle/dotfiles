@@ -82,6 +82,7 @@ nmap <leader>gp :CommandT public<cr>
 nmap <leader>gm :CommandT app/models<cr>
 nmap <leader>gc :CommandT app/controllers<cr>
 nmap <leader>gv :CommandT app/views<cr>
+nmap <leader>ga :CommandT app/assets<cr>
 let g:CommandTMaxHeight = 15
 
 " Fast alternate file switching
@@ -91,6 +92,17 @@ nnoremap <leader><leader> <C-^>
 let g:SuperTabCrMapping = 1
 let g:SuperTabMidWordCompletion = 0
 let g:SuperTabMappingTabLiteral = '<s-tab>'
+
+" Rails.vim
+" Edit the README_FOR_APP (makes :R commands work)
+map <Leader>R :e doc/README_FOR_APP<CR>
+autocmd User Rails Rnavcommand routes      config                             -glob=*.*  -default=routes.rb -suffix=
+autocmd User Rails Rnavcommand initializer config/initializers                -glob=**/*
+autocmd User Rails Rnavcommand template    app/assets/templates               -glob=**/*                    -suffix=.jst.ejs
+autocmd User Rails Rnavcommand jmodel      app/assets/javascripts/models      -glob=**/*                    -suffix=.coffee
+autocmd User Rails Rnavcommand jview       app/assets/javascripts/views       -glob=**/*                    -suffix=.coffee
+autocmd User Rails Rnavcommand jcollection app/assets/javascripts/collections -glob=**/*                    -suffix=.coffee
+autocmd User Rails Rnavcommand jrouter     app/assets/javascripts/routers     -glob=**/*                    -suffix=.coffee
 
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
