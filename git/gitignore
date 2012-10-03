@@ -4,14 +4,9 @@
 *.log
 TODO.md
 *--local.*
-.rvmrc
-admin/db/*.sql
 *.rbc
 .rbx
 TAGS
-admin/public/message_images
-admin/public/attachments
-admin/test/fixtures/files/exports
-admin/tmp
-admin/vendor/rails
-admin/script/maint
+NOTES
+NOTES.*
+.notes
