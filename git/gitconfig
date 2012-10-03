@@ -25,6 +25,6 @@
     autocrlf = input
     whitespace = trailing-space,cr-at-eol,tab-in-indent
 [push]
-    default = upstream
+    default = current
 [rerere]
     enabled = true
