@@ -37,7 +37,14 @@ alias md5sum=md5
 source ~/.dotfiles/secure/env.sh
 source ~/.dotfiles/git/git-completion.bash
 source ~/.dotfiles/git/helpers.sh
-source ~/.dotfiles/bash.d/ssh.sh
+
+for i in $(find ~/.dotfiles/bash.d -name "*.sh"); do
+  if [ -r $i ]; then
+    . $i
+  fi
+done
+unset i
+
 check_ssh_agent
 
 # RVM - Ruby Version Manager
