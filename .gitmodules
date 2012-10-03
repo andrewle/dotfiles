@@ -28,3 +28,9 @@
 [submodule "vim/bundle/vim-ios"]
 	path = vim/bundle/vim-ios
 	url = git://github.com/eraserhd/vim-ios.git
+[submodule "vim/bundle/puppet"]
+	path = vim/bundle/puppet
+	url = git://github.com/rodjek/vim-puppet.git
+[submodule "vim/bundle/handlebars"]
+	path = vim/bundle/handlebars
+	url = git://github.com/nono/vim-handlebars.git
