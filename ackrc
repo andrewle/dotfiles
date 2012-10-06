@@ -1,6 +1,6 @@
 --sort-files
---color
---context=1
 --follow
 --group
 --type-set=asp=.aspx,.ascx
+--type-set=sass=.sass,.scss
+--type-set=haml=.haml
