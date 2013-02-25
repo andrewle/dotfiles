@@ -31,7 +31,7 @@ set cursorline
 set grepformat=%f:%l:%m
 set grepprg=ack\ -A\ 0\ -B\ 0\ --nocolour\ --nogroup\ --column
 set listchars=tab:▶\ ,eol:¬
-set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf
+set wildignore=*.swp,.git,.svn,*.log,*.gif,*.jpeg,*.jpg,*.png,*.pdf,tmp/**
 
 set hidden                      " Be more liberal about hidden buffers
 set backspace=indent,eol,start  " backspace over everything
@@ -204,6 +204,7 @@ noremap <silent> <leader>sc :Scratch<CR>
 
 command! KillWhitespace :%s/\s\+$//g
 command! Splat :set paste|:normal "*p|:set nopaste<cr>
+noremap <Del> :KillWhitespace<cr>
 
 " INSERT MODE KEY MAPPINGS
 "
@@ -235,4 +236,3 @@ function! GoToLastEditedLine()
     exec "normal! g`\"" |
   endif
 endfunction
-
