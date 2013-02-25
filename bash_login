@@ -9,7 +9,8 @@ shopt -s histappend
 # Environment #############################
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 export GOBIN="~/Projects/golang/bin"
-export PATH="~/bin:$PATH:$GOBIN"
+export HEROKU_BIN=/usr/local/heroku/bin
+export PATH="~/bin:$PATH:$GOBIN:$HEROKU_BIN"
 export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PGDATA="/usr/local/pgsql/data"
@@ -26,6 +27,7 @@ alias preview="open -a preview"
 alias dotfiles="cd ~/.dotfiles"
 alias gr=gitroot
 alias g=git
+alias gti=git
 alias r=rails
 alias rails-src="cd ~/Projects/rails"
 alias tmr="tmux attach-session"
@@ -36,6 +38,7 @@ alias md5sum=md5
 # Include secured settings file
 source ~/.dotfiles/secure/env.sh
 source ~/.dotfiles/git/git-completion.bash
+source ~/.dotfiles/git/git-prompt.sh
 source ~/.dotfiles/git/helpers.sh
 
 for i in $(find ~/.dotfiles/bash.d -name "*.sh"); do
