@@ -95,8 +95,8 @@ let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 " Rails.vim
 " Edit the README_FOR_APP (makes :R commands work)
-map <Leader>R :e doc/README_FOR_APP<CR>
 autocmd User Rails Rnavcommand routes      config                             -glob=*.*  -default=routes.rb -suffix=
+autocmd User Rails Rnavcommand schema      db                                 -glob=*.*  -default=schema.rb -suffix=
 autocmd User Rails Rnavcommand initializer config/initializers                -glob=**/*
 autocmd User Rails Rnavcommand template    app/assets/templates               -glob=**/*                    -suffix=.jst.ejs
 autocmd User Rails Rnavcommand jmodel      app/assets/javascripts/models      -glob=**/*                    -suffix=.coffee
