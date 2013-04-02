@@ -10,7 +10,7 @@ shopt -s histappend
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 export GOBIN="~/Projects/golang/bin"
 export HEROKU_BIN=/usr/local/heroku/bin
-export PATH="~/bin:$PATH:$GOBIN:$HEROKU_BIN"
+export PATH="~/bin:$PATH:$HEROKU_BIN"
 export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PGDATA="/usr/local/pgsql/data"
