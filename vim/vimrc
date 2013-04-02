@@ -54,7 +54,7 @@ set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 " Keep more context when scrolling off the end of a buffer
 set scrolloff=3
 
-" Store temporary files in a central spo
+" Store temporary files in a central spot
 set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp
 
 set statusline=
@@ -198,9 +198,6 @@ function! RenameFile()
   endif
 endfunction
 map <leader>n :call RenameFile()<cr>
-
-" Shorcut for the scratch.vim scratch buffer
-noremap <silent> <leader>sc :Scratch<CR>
 
 command! KillWhitespace :%s/\s\+$//g
 command! Splat :set paste|:normal "*p|:set nopaste<cr>
