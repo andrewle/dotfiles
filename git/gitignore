@@ -11,3 +11,6 @@ NOTES
 NOTES.*
 .notes
 .env
+.zeus
+zeus.json
+bin
