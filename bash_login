@@ -28,9 +28,17 @@ alias dotfiles="cd ~/.dotfiles"
 alias gr=gitroot
 alias g=git
 alias gti=git
-alias r=rails
 alias rails-src="cd ~/Projects/rails"
 alias tmr="tmux attach-session"
+
+function r()
+{
+  if [ -e .zeus.sock ] && [ "$1" = "g" ]; then
+    zeus $*
+  else
+    rails $*
+  fi
+}
 
 # Weirdo Mac Aliases ##########################
 alias md5sum=md5
