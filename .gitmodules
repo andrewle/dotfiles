@@ -34,3 +34,6 @@
 [submodule "vim/bundle/handlebars"]
 	path = vim/bundle/handlebars
 	url = git://github.com/nono/vim-handlebars.git
+[submodule "vim/bundle/vim-rspec"]
+	path = vim/bundle/vim-rspec
+	url = git://github.com/thoughtbot/vim-rspec.git
