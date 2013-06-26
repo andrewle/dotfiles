@@ -8,6 +8,7 @@ mappings = {
   "psqlrc"        => "~/.psqlrc",
   "vim"           => "~/.vim",
   "vim/vimrc"     => "~/.vimrc",
+  "dotjs"         => "~/.js",
 }
 
 desc 'Install symlinks to dotfiles in the home directory'
