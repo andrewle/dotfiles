@@ -5,9 +5,25 @@ $(document).on('keydown', 'form.story *, form.story textarea', function(e) {
 });
 
 function fireEvent(element, event) {
+  if (element === undefined) { return; }
   var evt = document.createEvent("HTMLEvents");
   evt.initEvent(event, true, true ); // event type,bubbling,cancelable
   element.dispatchEvent(evt);
+}
+
+function scrollIntoView(elem, container) {
+  var elemTop = $(elem).position().top,
+      elemBottom = $(elem).position().top + $(elem).height(),
+      viewHeight = $(container).height();
+
+  if (elemBottom > viewHeight) {
+    $(elem).get(0).scrollIntoView();
+  }
+
+  if (elemTop < 0) {
+    $(container).scrollTop($(container).scrollTop() - viewHeight);
+    // $(elem).get(0).scrollIntoView();
+  }
 }
 
 var Story = {
@@ -23,6 +39,7 @@ var Story = {
   select: function (story) {
     $('.aleSelected').removeClass('aleSelected');
     story.addClass('aleSelected');
+    scrollIntoView(story, $(".items.panel_content", Panel.current()));
     window.aleSelectedId = story.data('cid');
   },
 
@@ -33,7 +50,7 @@ var Story = {
   },
 
   reapplySelection: function () {
-    if (Story.current().length !== 0) { return; }
+    if (Story.current().length !== 0 || window.aleSelectedId === undefined) { return; }
     Story.selectCid(window.aleSelectedId);
   }
 };
@@ -83,7 +100,7 @@ $(document).on('keyup', function (e) {
 
 $(document).on('keydown', function (e) {
   var panel = Panel.current(),
-      keyCodes = [74, 13, 75, 88];
+      keyCodes = [74, 13, 75, 88, 48, 49, 50, 51];
   if (panel.length === 0 && (keyCodes.indexOf(e.keyCode) == -1)) { return; }
 
   var currentStory = Story.current(),
@@ -118,6 +135,31 @@ $(document).on('keydown', function (e) {
     var expander = $('.expander', currentStory);
     fireEvent(expander.get(0), 'click');
     return false;
+  }
+
+  var estimate;
+  // 0
+  if (e.keyCode == 48) {
+    estimate = $('label.estimate_0', currentStory);
+    fireEvent(estimate.get(0), 'click');
+  }
+
+  // 1
+  if (e.keyCode == 49) {
+    estimate = $('label.estimate_1', currentStory);
+    fireEvent(estimate.get(0), 'click');
+  }
+
+  // 2
+  if (e.keyCode == 50) {
+    estimate = $('label.estimate_2', currentStory);
+    fireEvent(estimate.get(0), 'click');
+  }
+
+  // 3
+  if (e.keyCode == 51) {
+    estimate = $('label.estimate_3', currentStory);
+    fireEvent(estimate.get(0), 'click');
   }
 });
 
