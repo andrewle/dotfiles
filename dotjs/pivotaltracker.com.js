@@ -145,7 +145,7 @@ $(document).on('keydown', function (e) {
   }
 
   // 1
-  if (e.keyCode == 49) {
+  if (e.keyCode == 49 && !e.shiftKey) {
     estimate = $('label.estimate_1', currentStory);
     fireEvent(estimate.get(0), 'click');
   }
@@ -160,6 +160,14 @@ $(document).on('keydown', function (e) {
   if (e.keyCode == 51) {
     estimate = $('label.estimate_3', currentStory);
     fireEvent(estimate.get(0), 'click');
+  }
+
+  // !
+  if (e.keyCode == 49 && e.shiftKey) {
+    state = $('label.state', currentStory);
+    if (state.hasClass('start') || state.hasClass('finish') || state.hasClass('deliver')) {
+      fireEvent(state.get(0), 'click');
+    }
   }
 });
 
