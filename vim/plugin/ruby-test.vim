@@ -4,8 +4,13 @@
 "
 let g:current_spec_file = ""
 
+function! InTestFile()
+  return match(expand("%"), '_test.rb$') != -1
+endfunction
+
 function! SelectRubyCompiler(spec)
   let in_spec_file = match(a:spec, '_spec.rb$') != -1
+
   if in_spec_file
     compiler rspec
   else
@@ -24,7 +29,7 @@ function! ALERunNearestSpec()
 endfunction
 
 function! RunTestFile(...)
-  if InSpecFile()
+  if InSpecFile() || InTestFile()
     let l:spec = @%
     let g:last_spec_file = l:spec
   else

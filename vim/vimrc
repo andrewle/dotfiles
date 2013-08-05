@@ -46,8 +46,6 @@ set ch=2                        " Make command line two lines high
 set laststatus=2                " Always show the status line
 set showcmd                     " Show the current command in the lower right corner
 set showmode                    " Show the current mode
-set completeopt=longest,menuone " Omnicompletion customizations
-set complete-=i                 " Disable the use of included files in default autocompletion
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
 set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
 
@@ -88,13 +86,18 @@ let g:CommandTMaxHeight = 15
 " Fast alternate file switching
 nnoremap <leader><leader> <C-^>
 
+" Completions
+set complete=.,b,u,]
+set completeopt=menu,preview,longest
+set wildmode=longest,list:longest " zsh like text replacement
+
 " SuperTab
 let g:SuperTabCrMapping = 1
-let g:SuperTabMidWordCompletion = 0
-let g:SuperTabMappingTabLiteral = '<s-tab>'
+let g:SuperTabLongestHighlight = 1
 
 " Rails.vim
 " Edit the README_FOR_APP (makes :R commands work)
+autocmd User Rails Rnavcommand gemfile     .                                  -glob=*.*  -default=Gemfile   -suffix=
 autocmd User Rails Rnavcommand routes      config                             -glob=*.*  -default=routes.rb -suffix=
 autocmd User Rails Rnavcommand schema      db                                 -glob=*.*  -default=schema.rb -suffix=
 autocmd User Rails Rnavcommand initializer config/initializers                -glob=**/*
