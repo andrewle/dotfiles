@@ -73,22 +73,17 @@ let g:snips_author = "Andrew Le" " Set snipmate author
 
 " Command-T Plugin and File Navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-nmap <leader>f :CommandTFlush<cr>
-nmap <leader>g :CommandT<cr>
+nmap <leader>f  :CommandTFlush<cr>
+nmap <leader>g  :CommandT<cr>
 nmap <leader>gb :CommandTBuffer<cr>
-nmap <leader>gf :CommandT %%<cr>
-nmap <leader>gp :CommandT public<cr>
-nmap <leader>gm :CommandT app/models<cr>
-nmap <leader>gc :CommandT app/controllers<cr>
-nmap <leader>gv :CommandT app/views<cr>
-nmap <leader>ga :CommandT app/assets<cr>
+nmap <leader>t  :CommandT %%<cr>
 let g:CommandTMaxHeight = 15
 
 " Fast alternate file switching
 nnoremap <leader><leader> <C-^>
 
 " Fast redraw
-nmap <leader>r :redraw!<cr>
+nmap <C-l> :redraw!<CR>
 
 " Completions
 set complete=.,b,u,]
@@ -101,15 +96,9 @@ let g:SuperTabLongestHighlight = 1
 
 " Rails.vim
 " Edit the README_FOR_APP (makes :R commands work)
-autocmd User Rails Rnavcommand gemfile     .                                  -glob=*.*  -default=Gemfile   -suffix=
-autocmd User Rails Rnavcommand routes      config                             -glob=*.*  -default=routes.rb -suffix=
-autocmd User Rails Rnavcommand schema      db                                 -glob=*.*  -default=schema.rb -suffix=
-autocmd User Rails Rnavcommand initializer config/initializers                -glob=**/*
-autocmd User Rails Rnavcommand template    app/assets/templates               -glob=**/*                    -suffix=.jst.ejs
-autocmd User Rails Rnavcommand jmodel      app/assets/javascripts/models      -glob=**/*                    -suffix=.coffee
-autocmd User Rails Rnavcommand jview       app/assets/javascripts/views       -glob=**/*                    -suffix=.coffee
-autocmd User Rails Rnavcommand jcollection app/assets/javascripts/collections -glob=**/*                    -suffix=.coffee
-autocmd User Rails Rnavcommand jrouter     app/assets/javascripts/routers     -glob=**/*                    -suffix=.coffee
+autocmd User Rails Rnavcommand gemfile  .       -glob=*.*  -default=Gemfile   -suffix=
+autocmd User Rails Rnavcommand routes   config  -glob=*.*  -default=routes.rb -suffix=
+autocmd User Rails Rnavcommand schema   db      -glob=*.*  -default=schema.rb -suffix=
 
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
@@ -152,45 +141,17 @@ nnoremap <leader>w <c-w>vzz<c-w>l
 " Edit the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-nmap <silent> <leader>/ :noh<CR>
 
 " Quicker tab navigation
-noremap <leader>; :tabnext<CR>
-noremap <leader>, :tabprev<CR>
+noremap <C-S-J> :tabnext<CR>
+noremap <C-S-K> :tabprev<CR>
 
-" Easy quickfix list navigation
-noremap <F8> :call ToggleList('Quickfix List', 'c')<cr>
-noremap <F9> :cnext<cr>
-noremap <F7> :cprev<cr>
-noremap <S-F7> :cfirst<cr>
-noremap <S-F9> :clast<cr>
+" Easy visual selection
+nnoremap <unique> <leader>p vi(
+nnoremap <unique> <leader>q vi"
 
-function! GetBufferList()
-  redir =>buflist
-  silent! ls
-  redir END
-  return buflist
-endfunction
-
-function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
-      return
-    endif
-  endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
-  let winnr = winnr()
-  exec(a:pfx.'open')
-  if winnr() != winnr
-    wincmd p
-  endif
-endfunction
+command! KillWhitespace :%s/\s\+$//g
+noremap <Del> :KillWhitespace<cr>
 
 function! RenameFile()
   let old_name = expand('%')
@@ -202,10 +163,6 @@ function! RenameFile()
   endif
 endfunction
 map <leader>n :call RenameFile()<cr>
-
-command! KillWhitespace :%s/\s\+$//g
-command! Splat :set paste|:normal "*p|:set nopaste<cr>
-noremap <Del> :KillWhitespace<cr>
 
 " INSERT MODE KEY MAPPINGS
 "
