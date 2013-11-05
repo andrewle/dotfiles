@@ -94,11 +94,10 @@ set wildmode=longest,list:longest " zsh like text replacement
 let g:SuperTabCrMapping = 1
 let g:SuperTabLongestHighlight = 1
 
-" Rails.vim
-" Edit the README_FOR_APP (makes :R commands work)
-autocmd User Rails Rnavcommand gemfile  .       -glob=*.*  -default=Gemfile   -suffix=
-autocmd User Rails Rnavcommand routes   config  -glob=*.*  -default=routes.rb -suffix=
-autocmd User Rails Rnavcommand schema   db      -glob=*.*  -default=schema.rb -suffix=
+let g:rails_projections = {
+      \ "Gemfile": {
+      \   "command": "gemfile",
+      \   "alternate": "Gemfile.lock" }}
 
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
@@ -112,6 +111,8 @@ autocmd BufNewFile,BufRead *.json :set ft=javascript
 autocmd BufReadPost COMMIT_EDITMSG exec "normal! gg"
 autocmd FileType text setlocal textwidth=78
 autocmd FileType netrw setlocal nolist
+autocmd FileType ruby set sw=2 sts=2 et
+autocmd FileType javascript set sw=2 sts=2 et
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
@@ -143,8 +144,8 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Quicker tab navigation
-noremap <C-S-J> :tabnext<CR>
-noremap <C-S-K> :tabprev<CR>
+noremap <leader>; :tabnext<CR>
+noremap <leader>, :tabprev<CR>
 
 " Easy visual selection
 nnoremap <unique> <leader>p vi(
