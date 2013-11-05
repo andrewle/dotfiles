@@ -50,6 +50,7 @@ var Story = {
   },
 
   reapplySelection: function () {
+    if ($('form.story').length !== 0) { return; }
     if (Story.current().length !== 0 || window.aleSelectedId === undefined) { return; }
     Story.selectCid(window.aleSelectedId);
   }
