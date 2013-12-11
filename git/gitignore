@@ -13,6 +13,5 @@ NOTES.*
 .env
 .zeus
 zeus.json
-bin
 .ruby-version
 .ruby-gemset
