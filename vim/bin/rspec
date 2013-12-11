@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -S .zeus.sock ]; then
+  if [[ "$1" = "-I" ]]; then
+    shift 2
+  fi
+
+  zeus rspec $*
+else
+  command rspec -I app -I lib $*
+fi
