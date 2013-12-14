@@ -70,6 +70,7 @@ set statusline+=%P                              " Percentage through file
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 let g:snips_author = "Andrew Le" " Set snipmate author
+let g:syntastic_ignore_files = ['\c.*\.fish$']
 
 " Command-T Plugin and File Navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>

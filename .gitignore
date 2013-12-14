@@ -2,3 +2,4 @@
 vim/.netrwhist
 secure
 config/fish/fish_history
+config/fish/generated_completions
