@@ -12,22 +12,26 @@ function r
   end
 end
 
-function __ruby_run_in_zeus
+function rspec
   if test -S .zeus.sock
     zeus $argv
   else
-    command $argv
+    command rspec $argv
   end
 end
 
-function rspec
-  __ruby_run_in_zeus 'rspec' $argv
-end
-
 function testrb
-  __ruby_run_in_zeus 'testrb' $argv
+  if test -S .zeus.sock
+    zeus $argv
+  else
+    command testrb $argv
+  end
 end
 
 function rake
-  __ruby_run_in_zeus 'rake' $argv
+  if test -S .zeus.sock
+    zeus $argv
+  else
+    command rake $argv
+  end
 end
