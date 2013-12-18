@@ -14,7 +14,7 @@ end
 
 function rspec
   if test -S .zeus.sock
-    zeus $argv
+    zeus rspec $argv
   else
     command rspec $argv
   end
@@ -22,7 +22,7 @@ end
 
 function testrb
   if test -S .zeus.sock
-    zeus $argv
+    zeus test $argv
   else
     command testrb $argv
   end
@@ -30,7 +30,7 @@ end
 
 function rake
   if test -S .zeus.sock
-    zeus $argv
+    zeus rake $argv
   else
     command rake $argv
   end
