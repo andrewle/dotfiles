@@ -6,6 +6,8 @@ if [ -S .zeus.sock ]; then
   fi
 
   zeus test $*
+elif [ -f bin/rake ]; then
+  bin/rake test $*
 else
   command testrb $*
 fi
