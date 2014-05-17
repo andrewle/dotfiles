@@ -9,6 +9,7 @@ set -xg CLICOLOR true
 set -xg LSCOLORS "exfxcxdxbxegedabagacad"
 set -xg PAGER less
 set -xg LESS "-RSXF --tabs=4"
+set -xg EDITOR vim
 
 # Command Aliases ##########################
 alias photoshop="open -a /Applications/Adobe\ Creative\ Suite\ 3/Adobe\ Photoshop\ CS3/Adobe\ Photoshop\ CS3.app/"
