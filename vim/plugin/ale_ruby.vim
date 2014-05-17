@@ -16,6 +16,18 @@ function! ALERubyClassName()
   return l:output
 endfunction
 
+function! ALERubyNestedModuleDef()
+  let l:output = ""
+  ruby ruby_nested_module_def_from_path
+  return l:output
+endfunction
+
+function! ALERubyNestedModuleEnd()
+  let l:output = ""
+  ruby ruby_nested_module_end_from_path
+  return l:output
+endfunction
+
 function! ALERSpecDescribe()
   let l:output = ""
   ruby rspec_describe_from_path
@@ -46,6 +58,44 @@ def ruby_class_name_from_path
   VIM.command('let l:output = "%s"' % output)
 end
 
+def ruby_nested_module_def_from_path
+  with_class_name do |klass|
+    klass_parts = klass.split("::")
+
+    if klass_parts.count > 1
+      output = <<CLASS
+module #{klass_parts.first}
+  class #{klass_parts[1..-1].join("::")}
+    
+CLASS
+    else
+      output = <<CLASS
+module #{klass_parts.first}
+  
+CLASS
+    end
+
+    output
+  end
+end
+
+def ruby_nested_module_end_from_path
+  with_class_name do |klass|
+    klass_parts = klass.split("::")
+
+    if klass_parts.count > 1
+      output = ""
+      1.downto(0) do |i|
+        output << ("  " * i) + "end\n"
+      end
+    else
+      output = "end"
+    end
+
+    output
+  end
+end
+
 def rspec_describe_from_path
   full_path = VIM.evaluate("expand('%:p')")
   pwd  = Pathname.pwd.to_s + "/"
@@ -60,6 +110,15 @@ def rspec_describe_from_path
 
   klass  = classify(strip_head_paths(path.gsub(/_spec\.rb$/, '')))
   output = template % klass
+  VIM.command('let l:output = "%s"' % output)
+end
+
+def with_class_name(&block)
+  full_path = VIM.evaluate("expand('%:p')")
+  pwd = Pathname.pwd.to_s + "/"
+  path = full_path.gsub(pwd, '')
+  klass  = classify(strip_head_paths(path.gsub(/\.rb$/, '')))
+  output = yield klass
   VIM.command('let l:output = "%s"' % output)
 end
 
