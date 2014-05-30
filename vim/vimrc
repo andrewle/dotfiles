@@ -187,6 +187,9 @@ map <leader>n :call RenameFile()<cr>
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+
 " VISUAL MODE KEY MAPPINGS
 "
 vnoremap <c-j> 5gj
