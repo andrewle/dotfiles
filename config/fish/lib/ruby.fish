@@ -7,6 +7,8 @@ function r
       case '*'
         rails $argv
     end
+  else if test -f Gemfile
+    bundle exec rails $argv
   else
     rails $argv
   end
