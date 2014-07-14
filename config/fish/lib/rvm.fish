@@ -11,7 +11,7 @@ function __rvm_auto_activate --on-variable PWD
         break
       else
         if begin; test -s ".rvmrc"; or test -s ".ruby-version"; or test -s ".ruby-gemset"; end
-          eval "rvm reload" > /dev/null
+          eval "rvm use ." > /dev/null
           break
         else
           set cwd (dirname "$cwd")
