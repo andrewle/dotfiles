@@ -9,5 +9,5 @@ if [ -S .zeus.sock ]; then
 elif [ -f bin/rake ]; then
   bin/rake test $*
 else
-  command testrb $*
+  command ruby $*
 fi
