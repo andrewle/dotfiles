@@ -74,6 +74,7 @@ set statusline+=%P                              " Percentage through file
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 let g:snips_author = "Andrew Le" " Set snipmate author
+imap <C-J> <Plug>snipMateNextOrTrigger
 
 " Command-T Plugin and File Navigation
 let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*"
