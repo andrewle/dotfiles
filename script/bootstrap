@@ -111,7 +111,7 @@ symlink_files () {
   for src in "${!mappings[@]}"
   do
     dst="$HOME/$(basename "${mappings["$src"]}")"
-    link_file "$src" "$dst"
+    link_file ".dotfiles/$src" "$dst"
   done
 
   success 'symlinked files'
