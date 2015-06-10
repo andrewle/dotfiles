@@ -34,6 +34,12 @@ function! ALERSpecDescribe()
   return l:output
 endfunction
 
+function! ALERSpecFeature()
+  let l:output = ""
+  ruby rspec_feature_from_path
+  return l:output
+endfunction
+
 ruby << EOF
 require 'pathname'
 
@@ -113,6 +119,25 @@ def rspec_describe_from_path
   VIM.command('let l:output = "%s"' % output)
 end
 
+def rspec_feature_from_path
+  full_path = VIM.evaluate("expand('%:p')")
+  pwd  = Pathname.pwd.to_s + "/"
+  path = full_path.gsub(pwd, '')
+  num  = VIM::Buffer.current.line_number
+
+  if num == 1 && path =~ /^spec\/(.*?\/)*.*?_spec.rb/
+    template = "%s"
+  else
+    template = ""
+  end
+
+  name  = strip_head_paths(path.gsub(/_spec\.rb$/, ''))
+  name  = name.gsub("_", " ")
+  name  = titleize(name)
+  output = template % name
+  VIM.command('let l:output = "%s"' % output)
+end
+
 def with_class_name(&block)
   full_path = VIM.evaluate("expand('%:p')")
   pwd = Pathname.pwd.to_s + "/"
@@ -133,5 +158,9 @@ end
 def camelize(term)
   string = term.to_s.sub(/^[a-z\d]*/) { $&.capitalize }
   string.gsub(/(?:_|(\/))([a-z\d]*)/i) { "#{$1}#{$2.capitalize}" }.gsub('/', '::')
+end
+
+def titleize(str)
+  str.gsub(/\b[a-z]/) { $&.capitalize }
 end
 EOF
