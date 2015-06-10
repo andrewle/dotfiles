@@ -3,7 +3,7 @@ set fish_greeting ""
 set -xg JAVA_HOME /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 set -xg GOBIN "~/Projects/golang/bin"
 set -xg NPM_BIN /usr/local/share/npm/bin
-set -xg POSTGRESAPP /Applications/Postgres.app/Contents/MacOS/bin
+set -xg POSTGRESAPP /Applications/Postgres.app/Contents/Versions/9.4/bin
 set -xg PATH ~/bin $POSTGRESAPP $PATH $NPM_BIN
 set -xg CLICOLOR true
 set -xg LSCOLORS "exfxcxdxbxegedabagacad"
