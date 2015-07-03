@@ -77,7 +77,7 @@ let g:snips_author = "Andrew Le" " Set snipmate author
 imap <C-J> <Plug>snipMateNextOrTrigger
 
 " Command-T Plugin and File Navigation
-let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*"
+let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*,**/node_modules/*"
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <leader>f  :CommandTFlush<cr>
 nmap <leader>g  :CommandT<cr>
