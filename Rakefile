@@ -26,9 +26,8 @@ task :install do
     puts "Installing Divvy preferences"
     plist_name = "com.mizage.direct.Divvy.plist"
     divvy_prefs = File.join(File.dirname(__FILE__), "mac", "preferences", plist_name)
-    if !File.exist?(divvy_prefs)
-      sh "ln -s #{divvy_prefs} ~/Library/Preferences/#{plist_name}"
-    end
+    sh "rm ~/Library/Preferences/#{plist_name}"
+    sh "ln -s #{divvy_prefs} ~/Library/Preferences/#{plist_name}"
   end
 
   sh "git submodule update --init"
