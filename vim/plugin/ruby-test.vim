@@ -8,6 +8,10 @@ function! InTestFile()
   return match(expand("%"), '_test.rb$') != -1
 endfunction
 
+function! InSpecFile()
+  return match(expand("%"), '_spec.rb$') != -1
+endfunction
+
 function! SelectRubyCompiler(spec)
   let in_spec_file = match(a:spec, '_spec.rb$') != -1
 
