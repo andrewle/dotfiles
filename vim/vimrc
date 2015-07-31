@@ -200,6 +200,7 @@ vnoremap <c-k> 5gk
 "
 " Map :W to :w so vim stops complaining about W
 command! W :w
+command! E :Explore
 
 " SPELLING CORRECTIONS
 "
