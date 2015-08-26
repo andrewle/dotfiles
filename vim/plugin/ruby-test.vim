@@ -23,7 +23,7 @@ function! SelectRubyCompiler(spec)
 endfunction
 
 function! ALERunNearestSpec()
-  if InSpecFile()
+  if s:InSpecFile()
     let l:spec = "-l " . line(".") . " " . @%
     call SetLastSpecCommand(l:spec)
 
@@ -33,7 +33,7 @@ function! ALERunNearestSpec()
 endfunction
 
 function! RunTestFile(...)
-  if InSpecFile() || InTestFile()
+  if s:InSpecFile() || InTestFile()
     let l:spec = @%
     let g:last_spec_file = l:spec
   else
@@ -42,6 +42,10 @@ function! RunTestFile(...)
 
   call SelectRubyCompiler(l:spec)
   call MakeGreen(l:spec)
+endfunction
+
+function! s:InSpecFile()
+  return match(expand("%"), "_spec.rb$") != -1
 endfunction
 
 augroup ruby
