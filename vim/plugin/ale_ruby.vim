@@ -16,6 +16,12 @@ function! ALERubyClassName()
   return l:output
 endfunction
 
+function! ALERubyNestedClassEnd()
+  let l:output = ""
+  ruby ruby_nested_module_end_from_path
+  return l:output
+endfunction
+
 function! ALERubyNestedModuleDef()
   let l:output = ""
   ruby ruby_nested_module_def_from_path
@@ -48,20 +54,30 @@ def ruby_class_name_from_path
   pwd = Pathname.pwd.to_s + "/"
   path = full_path.gsub(pwd, '')
 
-  case path
-  when /^test\/unit\/.*?_test.rb/
-    template = "%s < ActiveSupport::TestCase"
-  when /^test\/functional\/.*?_test.rb/
-    template = "%s < ActionController::TestCase"
-  when /^test\/integration\/.*?_test.rb/
-    template = "%s < ActionDispatch::IntegrationTest"
-  else
-    template = "%s"
-  end
+  with_class_name do |klass|
+    case path
+    when /^test\/unit\/.*?_test.rb/
+      template = "class %s < ActiveSupport::TestCase"
+    when /^test\/functional\/.*?_test.rb/
+      template = "class %s < ActionController::TestCase"
+    when /^test\/integration\/.*?_test.rb/
+      template = "class %s < ActionDispatch::IntegrationTest"
+    else
+      klass_parts = klass.split("::")
+      if klass_parts.count > 1
+        klass = ""
+        klass_parts.each_with_index do |s, i|
+          n = klass_parts.count - i
+          o = i == (klass_parts.count - 1) ? "class" : "module"
+          klass << ("  " * i) + "#{o} #{s}\n"
+        end
+      end
 
-  klass  = classify(strip_head_paths(path.gsub(/\.rb$/, '')))
-  output = template % klass
-  VIM.command('let l:output = "%s"' % output)
+      template = "%s"
+    end
+
+    template % klass
+  end
 end
 
 def ruby_nested_module_def_from_path
@@ -91,8 +107,9 @@ def ruby_nested_module_end_from_path
 
     if klass_parts.count > 1
       output = ""
-      1.downto(0) do |i|
-        output << ("  " * i) + "end\n"
+      klass_parts.each_with_index do |s, i|
+        n = klass_parts.count - i - 1
+        output << ("  " * n) + "end\n"
       end
     else
       output = "end"

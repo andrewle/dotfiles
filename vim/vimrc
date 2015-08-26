@@ -48,7 +48,7 @@ set laststatus=2                " Always show the status line
 set showcmd                     " Show the current command in the lower right corner
 set showmode                    " Show the current mode
 set timeoutlen=250              " Short map keys timeout keeps the ui feeling snappy
-set tags=./TAGS,TAGS            " Use Emacs tagfile naming convention
+set tags=./.tags,.tags
 set modelines=1
 " Insert only one space when joining lines that contain sentence-terminating
 " punctuation like `.`.
@@ -200,6 +200,7 @@ vnoremap <c-k> 5gk
 "
 " Map :W to :w so vim stops complaining about W
 command! W :w
+command! E :Explore
 
 " SPELLING CORRECTIONS
 "

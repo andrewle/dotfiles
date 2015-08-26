@@ -1,12 +1,6 @@
 #!/bin/bash
 
-if [ -S .zeus.sock ]; then
-  if [[ "$1" = "-I" ]]; then
-    shift 2
-  fi
-
-  zeus test $*
-elif [ -f bin/rake ]; then
+if [ -f bin/rake ]; then
   bin/rake test $*
 else
   command ruby $*
