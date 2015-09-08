@@ -1,6 +1,5 @@
 --sort-files
 --follow
 --group
---type-add=haml:ext:haml
---type-add=sass:ext:.sass,.scss
---type-add=handlebars:ext:.handlebars,.hbs
+--type-set=sass=.sass,.scss
+--type-set=handlebars=.handlebars,.hbs
