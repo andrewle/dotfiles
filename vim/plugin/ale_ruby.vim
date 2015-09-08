@@ -71,9 +71,10 @@ def ruby_class_name_from_path
           o = i == (klass_parts.count - 1) ? "class" : "module"
           klass << ("  " * i) + "#{o} #{s}\n"
         end
+        template = "class %s"
+      else
+        template = "class %s"
       end
-
-      template = "%s"
     end
 
     template % klass
