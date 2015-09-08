@@ -1,10 +1,10 @@
 # Environment #############################
 set fish_greeting ""
-set -xg JAVA_HOME /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+set -xg JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
 set -xg GOBIN "~/Projects/golang/bin"
 set -xg NPM_BIN /usr/local/share/npm/bin
 set -xg POSTGRESAPP /Applications/Postgres.app/Contents/Versions/9.4/bin
-set -xg PATH ~/bin $POSTGRESAPP $PATH $NPM_BIN
+set -xg PATH ~/bin $POSTGRESAPP $PATH $NPM_BIN $JAVA_HOME
 set -xg CLICOLOR true
 set -xg LSCOLORS "exfxcxdxbxegedabagacad"
 set -xg PAGER less
