@@ -9,7 +9,8 @@ mappings = {
   "vim"           => "~/.vim",
   "vim/vimrc"     => "~/.vimrc",
   "dotjs"         => "~/.js",
-  "config"        => "~/.config"
+  "config"        => "~/.config",
+  ".irbrc"        => "~/.irbrc",
 }
 
 desc 'Install symlinks to dotfiles in the home directory'
