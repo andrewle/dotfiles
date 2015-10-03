@@ -877,3 +877,19 @@ snippet video
 	<video src="${1} height="${2}" width="${3}" preload="${5:none}" autoplay="${6:autoplay}>${7}</video>
 snippet wbr
 	<wbr />
+snippet #if
+	{{#if ${1:condition}}}${2}
+	{{/if}}
+snippet #e
+	{{else}}
+snippet #ea
+	{{#each ${1:list} as |${2:item}|}}
+	{{/each}}
+snippet #link
+	{{#link-to ${1}}}${2}{{/link-to}}
+snippet #log
+	{{log ${1:object}}}
+snippet #a
+	{{action "${1:name}"}}
+snippet #i
+	{{input value=${1:binding} class="${2:css}"}}

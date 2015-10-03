@@ -111,58 +111,27 @@ snippet until
 	until ${1:condition}
 		${0}
 	end
-snippet cla class .. end
-	class ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		${0}
+snippet cla
+	class `ALERubyClassName()`${1}
 	end
-snippet cla class .. initialize .. end
-	class ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		def initialize(${2:args})
-			${0}
-		end
-	end
-snippet cla< class .. < ParentClass .. initialize .. end
-	class ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} < ${2:ParentClass}
-		def initialize(${3:args})
-			${0}
-		end
-	end
-snippet blankslate class BlankSlate .. initialize .. end
-	class ${0:BlankSlate}
-		instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
-	end
-snippet claself class << self .. end
-	class << ${1:self}
-		${0}
+snippet class
+	class `ALERubyClassName()`${1}
 	end
 # class .. < DelegateClass .. initialize .. end
 snippet cla-
-	class ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} < DelegateClass(${2:ParentClass})
+	class ${1:`substitute(Filename(), '\(\w\{-1,}\)\(_\|\>\)', '\u\1', 'g')`} < DelegateClass(${2:ParentClass})
 		def initialize(${3:args})
 			super(${4:del_obj})
 
-			${0}
+			${5}
 		end
 	end
 snippet mod module .. end
-	module ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		${0}
-	end
-snippet mod module .. ClassMethods .. end
-	module ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		module ClassMethods
-			${0}
-		end
-
-		module InstanceMethods
-
-		end
-
-		def self.included(receiver)
-			receiver.extend         ClassMethods
-			receiver.send :include, InstanceMethods
-		end
-	end
+	`ALERubyNestedModuleDef()`${1}
+	`ALERubyNestedModuleEnd()`
+snippet module module .. end
+	`ALERubyNestedModuleDef()`${1}
+	`ALERubyNestedModuleEnd()`
 # attr_reader
 snippet r
 	attr_reader :${0:attr_names}
@@ -204,7 +173,11 @@ snippet defs
 		${0}
 	end
 # def initialize
-snippet definit
+snippet defi
+	def initialize
+		${0}
+	end
+snippet defi()
 	def initialize(${1:args})
 		${0}
 	end
@@ -674,8 +647,16 @@ snippet mthrow
 #     Rspec snippets     #
 ##########################
 snippet desc
-	describe ${1:`substitute(substitute(vim_snippets#Filename(), '_spec$', '', ''), '\(_\|^\)\(.\)', '\u\2', 'g')`} do
-		${0}
+	require "spec_helper"
+
+	RSpec.describe `ALERSpecDescribe()`${1} do
+	end
+snippet feat
+	require "rails_helper"
+
+	RSpec.feature "`ALERSpecFeature()`", type: :feature do
+	  scenario "${1}" do
+	  end
 	end
 snippet descm
 	describe '${1:#method}' do
@@ -731,3 +712,10 @@ snippet iiexp
 	it { is_expected.to ${0} }
 snippet iiexpn
 	it { is_expected.not_to ${0} }
+snippet FG
+	FactoryGirl.create(${1})
+snippet FGS
+	FactoryGirl.build_stubbed(${1})
+snippet FGD
+	FactoryGirl.define ${1} do
+	end
