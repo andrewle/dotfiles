@@ -75,13 +75,15 @@ set statusline+=%P                              " Percentage through file
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 let g:snips_author = "Andrew Le" " Set snipmate author
 imap <C-J> <Plug>snipMateNextOrTrigger
+let g:makegreen_stay_on_file = 1
 
 " Command-T Plugin and File Navigation
 let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*,**/node_modules/*"
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <leader>f  :CommandTFlush<cr>
-nmap <leader>g  :CommandT<cr>
+nmap <leader>g  :CommandTFlush<cr>\|:CommandT<cr>
 let g:CommandTMaxHeight = 15
+let g:CommandTFileScanner = 'watchman'
 
 " Fast alternate file switching
 nnoremap <leader><leader> <C-^>
@@ -164,10 +166,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 noremap <leader>; :tabnext<CR>
 noremap <leader>, :tabprev<CR>
 
-" Easy visual selection
-nnoremap <unique> <leader>p vi(
-nnoremap <unique> <leader>q vi"
-
 command! KillWhitespace :%s/\s\+$//g
 noremap <Del> :KillWhitespace<cr>
 
@@ -181,6 +179,11 @@ function! RenameFile()
   endif
 endfunction
 map <leader>n :call RenameFile()<cr>
+
+function! CreateDirectoryTreeToFile()
+  exec ':!echo CREATE ' . expand("%:p:h") . '; mkdir -p ' . expand("%:p:h")
+endfunction
+map <leader>d :call CreateDirectoryTreeToFile()<cr>
 
 " INSERT MODE KEY MAPPINGS
 "
@@ -207,6 +210,7 @@ command! E :Explore
 iabbrev conosle console
 iabbrev destory destroy
 iabbrev destory_all destroy_all
+iabbrev timline timeline
 
 iabbrev AR: ActiveRecord
 
