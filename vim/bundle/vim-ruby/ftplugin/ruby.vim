@@ -48,7 +48,7 @@ setlocal includeexpr=substitute(substitute(v:fname,'::','/','g'),'$','.rb','')
 setlocal suffixesadd=.rb
 
 if exists("&ofu") && has("ruby")
-  setlocal omnifunc=rubycomplete#Complete
+  " setlocal omnifunc=rubycomplete#Complete
 endif
 
 " To activate, :set ballooneval

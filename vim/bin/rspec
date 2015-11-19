@@ -3,5 +3,5 @@
 if [ -f bin/rspec ]; then
   bin/rspec $*
 else
-  command rspec -I lib $*
+  command rspec -I lib -I app $*
 fi

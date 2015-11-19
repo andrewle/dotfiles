@@ -113,11 +113,6 @@ set wildmode=longest,list:longest " zsh like text replacement
 let g:SuperTabCrMapping = 1
 let g:SuperTabLongestHighlight = 1
 
-let g:rails_projections = {
-      \ "Gemfile": {
-      \   "command": "gemfile",
-      \   "alternate": "Gemfile.lock" }}
-
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
 autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
@@ -132,6 +127,9 @@ autocmd FileType text setlocal textwidth=78
 autocmd FileType netrw setlocal nolist
 autocmd FileType ruby set sw=2 sts=2 et
 autocmd FileType javascript set sw=2 sts=2 et
+
+" Projectionist
+let g:projectionist_file = "config/projections.json"
 
 " GUI/TERMINAL ENVIRONMENT SETTINGS
 syntax on
