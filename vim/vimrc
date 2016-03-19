@@ -92,7 +92,7 @@ nnoremap <leader><leader> <C-^>
 nmap <C-l> :redraw!<CR>
 
 " Syntastic
-function ALESyntasticCheck()
+function! ALESyntasticCheck()
   silent! w
   silent! SyntasticCheck
   redraw!
@@ -211,6 +211,7 @@ iabbrev destory_all destroy_all
 iabbrev timline timeline
 
 iabbrev AR: ActiveRecord
+iabbrev HS: HomeSavi:
 
 " allow command line editing like emacs
 cnoremap <C-A>      <Home>

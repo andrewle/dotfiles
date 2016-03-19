@@ -13,6 +13,7 @@
     br = branch
     aa = add --all
     dc = diff --cached
+    fa = fetch --all
     l = log -20 --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(blue)<%an>%Creset' --date-order --graph
     oops = reset --hard HEAD@{1}
 [merge]
