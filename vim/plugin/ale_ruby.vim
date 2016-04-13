@@ -86,11 +86,12 @@ def ruby_nested_module_def_from_path
     klass_parts = klass.split("::")
 
     if klass_parts.count > 1
-      output = <<CLASS
-module #{klass_parts.first}
-  class #{klass_parts[1..-1].join("::")}
-    
-CLASS
+      output = ""
+      num_parts = klass_parts.size
+      klass_parts.each_with_index do |s, i|
+        type = (i + 1 == num_parts) ? "class" : "module"
+        output << ("  " * i) + "#{type} #{s}\n"
+      end
     else
       output = <<CLASS
 module #{klass_parts.first}
