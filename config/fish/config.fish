@@ -5,6 +5,7 @@ set -xg GOBIN "~/Projects/golang/bin"
 set -xg NPM_BIN /usr/local/share/npm/bin
 set -xg POSTGRESAPP /Applications/Postgres.app/Contents/Versions/9.4/bin
 set -xg PATH ~/bin $POSTGRESAPP $PATH $NPM_BIN $JAVA_HOME
+set -xg PATH /Users/andrewle/.cargo/bin $PATH
 set -xg CLICOLOR true
 set -xg LSCOLORS "exfxcxdxbxegedabagacad"
 set -xg PAGER less
