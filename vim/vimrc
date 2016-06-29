@@ -78,7 +78,7 @@ imap <C-J> <Plug>snipMateNextOrTrigger
 let g:makegreen_stay_on_file = 1
 
 " Command-T Plugin and File Navigation
-let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*,**/node_modules/*"
+let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*,**/node_modules/*,*/node_modules/**/*,tmp/**/*"
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <leader>f  :CommandTFlush<cr>
 nmap <leader>g  :CommandTFlush<cr>\|:CommandT<cr>
@@ -102,7 +102,7 @@ nmap <leader>ce :SyntasticErrors<CR>
 let g:syntastic_enable_signs=1
 let g:syntastic_ignore_files = ['\c.*\.fish$', '\c.*\.html.erb$']
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['sass', 'scss', 'haml'] }
+                           \ 'passive_filetypes': ['sass', 'scss', 'haml', 'ruby'] }
 
 " Completions
 set complete=.,b,u,]
