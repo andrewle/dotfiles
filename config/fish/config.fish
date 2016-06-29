@@ -21,6 +21,11 @@ alias gr=gitroot
 alias g=git
 alias tmr="tmux attach-session"
 alias md5sum=md5
+alias h=heroku
+alias be="bundle exec"
+
+# Load rbenv shims and autocompletion
+status --is-interactive; and . (rbenv init -|psub)
 
 # Load up lib files
 for i in (ls ~/.config/fish/lib/*.fish)
