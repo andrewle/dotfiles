@@ -21,3 +21,11 @@ function rake
     command rake $argv
   end
 end
+
+function ember
+  if test -f bin/ember
+    bin/ember $argv
+  else
+    command $argv
+  end
+end
