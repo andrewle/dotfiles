@@ -22,6 +22,8 @@ alias tmr="tmux attach-session"
 alias md5sum=md5
 alias h=heroku
 alias be="bundle exec"
+alias wip="git aa; git ci -m 'WIP'"
+alias unwip="git reset head^"
 
 # Load rbenv shims and autocompletion
 status --is-interactive; and . (rbenv init -|psub)
