@@ -200,7 +200,7 @@ vnoremap <c-k> 5gk
 " Align hash rockets
 vnoremap <c-l> :Align=><cr>
 " Format hash rockets with one space on either side
-vnoremap <c-k> :s/\s*=>\s*/ => /g<cr>:noh<cr>
+vnoremap <c-h> :s/\s*=>\s*/ => /g<cr>:noh<cr>
 
 
 " COMMAND MODE KEY MAPPINGS
