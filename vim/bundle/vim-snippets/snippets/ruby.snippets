@@ -119,9 +119,11 @@ snippet until
 		${0}
 	end
 snippet cla
+	# frozen_string_literal: true
 	`ALERubyClassName()`${1}
 	end
 snippet class
+	# frozen_string_literal: true
 	`ALERubyClassName()`${1}
 	end
 # class .. < DelegateClass .. initialize .. end
@@ -137,6 +139,10 @@ snippet cla-
 snippet mod module .. end
 	# frozen_string_literal: true
 	`ALERubyNestedModuleDef()`${1}
+	`ALERubyNestedModuleEnd()`
+snippet modc module .. end
+	# frozen_string_literal: true
+	`ALERubyNestedModuleDefLastClass()`${1}
 	`ALERubyNestedModuleEnd()`
 snippet module module .. end
 	# frozen_string_literal: true

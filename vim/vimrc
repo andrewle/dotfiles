@@ -180,8 +180,9 @@ map <leader>n :call RenameFile()<cr>
 
 function! CreateDirectoryTreeToFile()
   exec ':!echo CREATE ' . expand("%:p:h") . '; mkdir -p ' . expand("%:p:h")
+  exec ':w'
 endfunction
-map <leader>d :call CreateDirectoryTreeToFile()<cr>
+command! AA :call CreateDirectoryTreeToFile()<cr>
 
 " INSERT MODE KEY MAPPINGS
 "

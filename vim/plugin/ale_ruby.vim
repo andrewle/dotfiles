@@ -28,6 +28,12 @@ function! ALERubyNestedModuleDef()
   return l:output
 endfunction
 
+function! ALERubyNestedModuleDefLastClass()
+  let l:output = ""
+  ruby ruby_nested_module_def_from_path_with_last_as_class
+  return l:output
+endfunction
+
 function! ALERubyNestedModuleEnd()
   let l:output = ""
   ruby ruby_nested_module_end_from_path
@@ -90,6 +96,28 @@ def ruby_nested_module_def_from_path
       num_parts = klass_parts.size
       klass_parts.each_with_index do |s, i|
         type = (i + 1 == num_parts) ? "class" : "module"
+        output << ("  " * i) + "#{type} #{s}\n"
+      end
+    else
+      output = <<CLASS
+module #{klass_parts.first}
+  
+CLASS
+    end
+
+    output
+  end
+end
+
+def ruby_nested_module_def_from_path_with_last_as_class
+  with_class_name do |klass|
+    klass_parts = klass.split("::")
+
+    if klass_parts.count > 1
+      output = ""
+      num_parts = klass_parts.size
+      klass_parts.each_with_index do |s, i|
+        type = (i >= num_parts - 2) ? "class" : "module"
         output << ("  " * i) + "#{type} #{s}\n"
       end
     else

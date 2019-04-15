@@ -1,0 +1,8 @@
+- cmd: y
+  when: 1551925518
+- cmd: yes
+  when: 1551925523
+- cmd: all
+  when: 1551925531
+- cmd: 1
+  when: 1551925575
