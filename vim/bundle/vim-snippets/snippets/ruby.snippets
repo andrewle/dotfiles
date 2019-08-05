@@ -664,7 +664,7 @@ snippet mthrow
 ##########################
 snippet desc
 	# frozen_string_literal: true
-	require "spec_helper"
+	require "rails_helper"
 
 	RSpec.describe `ALERSpecDescribe()`${1} do
 	  subject { `ALERSpecDescribe()` }
@@ -678,11 +678,17 @@ snippet feat
 	  end
 	end
 snippet descm
-	describe '${1:#method}' do
+	describe "${1:#method}" do
 		${0:pending 'Not implemented'}
 	end
+snippet ds
+	describe "${1:#method}" do
+	  it "${2:works}" do
+	    ${0}
+	  end
+	end
 snippet cont
-	context '${1:message}' do
+	context "${1:message}" do
 		${0}
 	end
 snippet bef
@@ -695,8 +701,12 @@ snippet aft
 	end
 snippet let
 	let(:${1:object}) { ${0} }
+snippet letd
+	let(:${1:object}) { double("$1"${2:, method: value}) }
 snippet let!
 	let!(:${1:object}) { ${0} }
+snippet double
+	${1:object} = double("$1")
 snippet subj
 	subject { ${0} }
 snippet s.
@@ -714,11 +724,14 @@ snippet shared
 snippet ibl
 	it_behaves_like ${0:'shared examples name'}
 snippet it
-	it "${1:spec_name}" do
-		${0}
+	it "${1:works}" do
+	  ${0}
 	end
 snippet its
 	its(:${1:method}) { should ${0} }
+snippet itvcr
+	it "${1}", vcr: { record: :once, match_requests_on: [:method, :uri, :body] } do
+	end
 snippet is
 	it { should ${0} }
 snippet isn
@@ -738,3 +751,10 @@ snippet FGS
 snippet FGD
 	FactoryGirl.define ${1} do
 	end
+##########################
+#     Shopify snippets     #
+##########################
+snippet shopw
+	shop.with_shopify_session {
+	  ${0}
+	}

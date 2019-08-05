@@ -32,3 +32,6 @@ status --is-interactive; and . (rbenv init -|psub)
 for i in (ls ~/.config/fish/lib/*.fish)
   source $i
 end
+source ~/.asdf/asdf.fish
+source ~/.asdf/asdf.fish
+source ~/.asdf/asdf.fish

@@ -184,6 +184,12 @@ function! CreateDirectoryTreeToFile()
 endfunction
 command! AA :call CreateDirectoryTreeToFile()<cr>
 
+function! EditRubySnippets()
+  exec ':e ~/.vim/bundle/vim-snippets/snippets/ruby.snippets'
+  exec 'normal! zR'
+endfunction
+command! Rsnippets :call EditRubySnippets()<cr>
+
 " INSERT MODE KEY MAPPINGS
 "
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -192,11 +198,16 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
+imap <c-h> {}<esc>i
 
 " VISUAL MODE KEY MAPPINGS
 "
 vnoremap <c-j> 5gj
 vnoremap <c-k> 5gk
+" Replace the current line with the current pasteboard contents
+map <leader>v V:!pbpaste<cr>
+" Copy the current visual mode lines to the pasteboard
+map <leader>c :!pbcopy<cr>u
 
 " Align hash rockets
 vnoremap <c-l> :Align=><cr>
