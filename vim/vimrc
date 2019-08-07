@@ -75,6 +75,8 @@ set statusline+=%P                              " Percentage through file
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 let g:makegreen_stay_on_file = 1
 
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-y>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
