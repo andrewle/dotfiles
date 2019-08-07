@@ -1,4 +1,0 @@
-#!/bin/bash
-
-NAME=`basename -s .git $1`
-git subtree add --prefix vim/bundle/$NAME $1 master --squash
