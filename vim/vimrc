@@ -69,6 +69,8 @@ set statusline+=%=                              " Right align everything past he
 set statusline+=%-16(\ %l,%c\|%{col('$')-1}\ %) " show line number, cols, total cols
 set statusline+=%P                              " Percentage through file
 
+let g:ruby_path="/usr/local/bin/ruby"
+
 " PLUGIN SETTINGS
 "
 " Hide the following file name patterns from the builtin browser
