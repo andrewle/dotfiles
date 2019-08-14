@@ -90,7 +90,6 @@ let g:UltiSnipsEditSplit="vertical"
 " Command-T Plugin and File Navigation
 let g:CommandTWildIgnore=&wildignore . ",**/tmp/*,public/**/*,**/db/migrate/*,**/node_modules/*,*/node_modules/**/*,tmp/**/*"
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-nmap <leader>f  :CommandTFlush<cr>
 nmap <leader>g  :CommandTFlush<cr>\|:CommandT<cr>
 let g:CommandTMaxHeight = 15
 let g:CommandTFileScanner = 'watchman'
