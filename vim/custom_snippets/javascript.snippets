@@ -5,7 +5,13 @@ snippet afun "arrow function"
 endsnippet
 
 snippet =() "arrow function"
-(${1:args}) => {
+= (${1:args}) => {
   ${2: }
+};
+endsnippet
+
+snippet dfun "define function"
+const ${1:functionName} = (${2:args}) => {
+  $3
 };
 endsnippet
