@@ -22,7 +22,7 @@ alias tmr="tmux attach-session"
 alias md5sum=md5
 alias h=heroku
 alias be="bundle exec"
-alias wip="git aa; git ci -m 'WIP'"
+alias wip="git aa; git ci -m 'WIP [ci skip]'"
 alias unwip="git reset head^"
 
 # Load rbenv shims and autocompletion

@@ -181,14 +181,14 @@ endsnippet
 
 snippet cla
 # frozen_string_literal: true
-`ALERubyClassName()`${1}
+`!v ALERubyClassName()`${1}
 end
 # class .. < DelegateClass .. initialize .. end
 endsnippet
 
 snippet cla-
 # frozen_string_literal: true
-class ${1:`substitute(Filename(), '\(\w\{-1,}\)\(_\|\>\)', '\u\1', 'g')`} < DelegateClass(${2:ParentClass})
+class ${1:`!v substitute(Filename(), '\(\w\{-1,}\)\(_\|\>\)', '\u\1', 'g')`} < DelegateClass(${2:ParentClass})
 	def initialize(${3:args})
 		super(${4:del_obj})
 
@@ -199,20 +199,20 @@ endsnippet
 
 snippet mod "module .. end"
 # frozen_string_literal: true
-`ALERubyNestedModuleDef()`${1}
-`ALERubyNestedModuleEnd()`
+`!v ALERubyNestedModuleDef()`${1}
+`!v ALERubyNestedModuleEnd()`
 endsnippet
 
 snippet modc "module .. end"
 # frozen_string_literal: true
-`ALERubyNestedModuleDefLastClass()`${1}
-`ALERubyNestedModuleEnd()`
+`!v ALERubyNestedModuleDefLastClass()`${1}
+`!v ALERubyNestedModuleEnd()`
 endsnippet
 
 snippet module "module .. end"
 # frozen_string_literal: true
-`ALERubyNestedModuleDef()`${1}
-`ALERubyNestedModuleEnd()`
+`!v ALERubyNestedModuleDef()`${1}
+`!v ALERubyNestedModuleEnd()`
 # attr_reader
 endsnippet
 
