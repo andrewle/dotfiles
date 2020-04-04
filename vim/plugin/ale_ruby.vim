@@ -10,6 +10,12 @@ endif
 
 let g:loaded_ale_ruby = "true"
 
+function! ALERubyOpenDependency()
+  let l:output = ""
+  ruby ruby_open_dependency
+  return l:output
+endfunction
+
 function! ALERubyClassName()
   let l:output = ""
   ruby ruby_class_name_from_path
@@ -54,6 +60,7 @@ endfunction
 
 ruby << EOF
 require 'pathname'
+require 'fileutils'
 
 def ruby_class_name_from_path
   full_path = VIM.evaluate("expand('%:p')")
@@ -209,5 +216,22 @@ end
 
 def titleize(str)
   str.gsub(/\b[a-z]/) { $&.capitalize }
+end
+
+def ruby_open_dependency
+  # Only supports javascript imports right now
+  line = VIM.evaluate("getline('.')")
+  filepath = VIM.evaluate("expand('%:p')")
+  curr = Pathname.new(filepath)
+  ext = curr.extname
+  targetfile = line.split(/\s/)[-1].gsub(/[;"']/, "") + ext
+  target = Pathname.new(curr.dirname + targetfile)
+
+  if !target.exist?
+    FileUtils.mkdir_p(target.dirname)
+    FileUtils.touch(target.to_s)
+  end
+
+  VIM.command('let l:output = "%s"' % target.to_s)
 end
 EOF

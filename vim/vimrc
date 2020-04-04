@@ -77,7 +77,7 @@ let g:ruby_path="/usr/local/bin/ruby"
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
 let g:makegreen_stay_on_file = 1
 
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
+let g:UltiSnipsSnippetDirectories=["custom_snippets", "UltiSnips"]
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<s-tab>"
@@ -231,6 +231,13 @@ map <leader>c :!pbcopy<cr>u
 vnoremap <c-l> :Align=><cr>
 " Format hash rockets with one space on either side
 vnoremap <c-h> :s/\s*=>\s*/ => /g<cr>:noh<cr>
+
+function! CreateOrOpenDependency()
+  let l:output = ALERubyOpenDependency()
+  set splitright
+  exec ":vsplit " . l:output
+endfunction
+vnoremap <c-o> :call CreateOrOpenDependency()<cr>
 
 
 " COMMAND MODE KEY MAPPINGS

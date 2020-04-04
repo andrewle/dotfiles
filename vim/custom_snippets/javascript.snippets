@@ -1,14 +1,14 @@
-snippet afun "arrow function"
+snippet afun "arrow function" i
 () => { ${1} }
-endsnippet
-
-snippet dfun "define function"
-const ${1:functionName} = (${2:args}) => {
-  $3
-};
 endsnippet
 
 snippet ffun "define arrow function" m
 const ${1:functionName} = (${2:args}) => {
 };
+endsnippet
+
+snippet it "jest test"
+it("${1}", () => {
+  ${2}
+});
 endsnippet
