@@ -10,6 +10,12 @@ endif
 
 let g:loaded_ale_ruby = "true"
 
+function! ALERubyOpenAlternateFile()
+  let l:output = ""
+  ruby ruby_open_alternate_file
+  return l:output
+endfunction
+
 function! ALERubyOpenDependency()
   let l:output = ""
   ruby ruby_open_dependency
@@ -233,5 +239,26 @@ def ruby_open_dependency
   end
 
   VIM.command('let l:output = "%s"' % target.to_s)
+end
+
+def ruby_open_alternate_file
+  # only support ts/js conventions right now
+  filepath = VIM.evaluate("expand('%:p')")
+  curr = Pathname.new(filepath)
+
+  if curr.to_s.include?("__tests__")
+    VIM.command('let l:output = "%s"' % curr.to_s)
+  else
+    base = curr.basename.to_s.split(".").insert(-2, "test")
+    testfile = base.join(".")
+    target = Pathname.new(File.join(curr.dirname, "__tests__", testfile))
+
+    if !target.exist?
+      FileUtils.mkdir_p(target.dirname)
+      FileUtils.touch(target.to_s)
+    end
+
+    VIM.command("edit %s" % target.to_s.strip)
+  end
 end
 EOF

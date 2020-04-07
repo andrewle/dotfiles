@@ -246,6 +246,8 @@ vnoremap <c-o> :call CreateOrOpenDependency()<cr>
 command! W :w
 command! E :Explore
 
+command! AA :call ALERubyOpenAlternateFile()
+
 " SPELLING CORRECTIONS
 "
 iabbrev conosle console
