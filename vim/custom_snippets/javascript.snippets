@@ -2,7 +2,7 @@ snippet afun "arrow function" i
 () => { ${1} }
 endsnippet
 
-snippet ffun "define arrow function" m
+snippet ffun "define arrow function" mb
 const ${1:functionName} = (${2:args}) => {
 };
 endsnippet
@@ -11,4 +11,50 @@ snippet it "jest test"
 it("${1}", () => {
   ${2}
 });
+endsnippet
+
+snippet ttag "jsx tag"
+<${1}${2}></${0:$1}>
+endsnippet
+
+snippet imd "import redux usedispatch"
+import { useDispatch } from "react-redux";
+endsnippet
+
+snippet imrs "import react usestate"
+import React, { useState } from "react";
+endsnippet
+
+snippet imim "import immutable"
+import { ${1:fromJS, List, Map} } from "immutable";
+endsnippet
+
+snippet imlo "import lodash"
+import { $1 } from "lodash";
+endsnippet
+
+snippet uses "useState hook"
+const [${1:val}, ${2:setVal}] = useState($3);
+endsnippet
+
+snippet used "useDispatch hook"
+const dispatch = useDispatch();
+endsnippet
+
+snippet useEffect "useEffect hook"
+useEffect(() => {
+  $1
+});
+endsnippet
+
+snippet edred "export default reducer function"
+export default function(state, action) {
+  return state;
+};
+endsnippet
+
+snippet fsmd "fsm dispatch"
+function(fsm, dispatch, getState) {
+  $1
+},
 endsnippet
