@@ -238,7 +238,7 @@ vnoremap <c-h> :s/\s*=>\s*/ => /g<cr>:noh<cr>
 function! CreateOrOpenDependency()
   let l:output = ALERubyOpenDependency()
   set splitright
-  exec ":vsplit " . l:output
+  exec ":edit " . l:output
 endfunction
 vnoremap <c-o> :call CreateOrOpenDependency()<cr>
 
