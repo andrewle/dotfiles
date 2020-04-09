@@ -3,7 +3,7 @@ set fish_greeting ""
 set -xg JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
 set -xg GOBIN "~/Projects/golang/bin"
 set -xg NPM_BIN /usr/local/share/npm/bin
-set -xg POSTGRESAPP /Applications/Postgres.app/Contents/Versions/9.5/bin
+set -xg POSTGRESAPP /Applications/Postgres.app/Contents/Versions/9.6/bin
 set -xg PATH ~/bin $POSTGRESAPP $PATH $NPM_BIN $JAVA_HOME
 set -xg PATH /Users/andrewle/.cargo/bin $PATH
 set -xg CLICOLOR true
@@ -35,3 +35,7 @@ end
 source ~/.asdf/asdf.fish
 source ~/.asdf/asdf.fish
 source ~/.asdf/asdf.fish
+
+if test -f "/Users/andrewle/.shopify-app-cli/shopify.fish"
+  source "/Users/andrewle/.shopify-app-cli/shopify.fish"
+end
