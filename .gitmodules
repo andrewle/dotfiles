@@ -64,3 +64,6 @@
 [submodule "vim/bundle/vim-projectionist"]
 	path = vim/bundle/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist.git
+[submodule "vim/bundle/vim-styled-components"]
+	path = vim/bundle/vim-styled-components
+	url = https://github.com/styled-components/vim-styled-components/
