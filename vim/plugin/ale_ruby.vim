@@ -176,6 +176,7 @@ def rspec_describe_from_path
 
   klass  = classify(strip_head_paths(path.gsub(/_spec\.rb$/, '')))
   output = template % klass
+  output = klass
   VIM.command('let l:output = "%s"' % output)
 end
 

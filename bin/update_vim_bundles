@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git submodule foreach git fetch origin
-git submodule foreach git rebase origin/master
+# git submodule foreach git rebase origin/master

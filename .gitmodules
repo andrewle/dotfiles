@@ -43,12 +43,6 @@
 [submodule "vim/bundle/vim-rubocop"]
 	path = vim/bundle/vim-rubocop
 	url = git@github.com:ngmy/vim-rubocop.git
-[submodule "vim/bundle/vim-jsx-pretty"]
-	path = vim/bundle/vim-jsx-pretty
-	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
-[submodule "vim/bundle/vim-javascript"]
-	path = vim/bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
@@ -58,12 +52,6 @@
 [submodule "vim/bundle/vim-ragtag"]
 	path = vim/bundle/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
-[submodule "vim/bundle/typescript-vim"]
-	path = vim/bundle/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "vim/bundle/vim-projectionist"]
 	path = vim/bundle/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist.git
-[submodule "vim/bundle/vim-styled-components"]
-	path = vim/bundle/vim-styled-components
-	url = https://github.com/styled-components/vim-styled-components/

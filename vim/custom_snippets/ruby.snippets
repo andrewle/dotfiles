@@ -1092,8 +1092,8 @@ snippet desc
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe `ALERSpecDescribe()`${1} do
-  subject { `ALERSpecDescribe()` }
+RSpec.describe `!v ALERSpecDescribe()`${1} do
+  subject { `!v ALERSpecDescribe()` }
 end
 endsnippet
 
@@ -1101,7 +1101,7 @@ snippet feat
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.feature "`ALERSpecFeature()`", type: :feature do
+RSpec.feature "`!v ALERSpecFeature()`", type: :feature do
   scenario "${1}" do
   end
 end

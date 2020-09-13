@@ -130,11 +130,7 @@ let g:SuperTabLongestHighlight = 1
 
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
-autocmd BufNewFile,BufRead *.master,*.aspx,*.ascx :set ft=html
 autocmd BufNewFile,BufRead *.ru :set ft=ruby
-autocmd BufNewFile,BufRead Vagrantfile :set ft=ruby
-autocmd BufNewFile,BufRead *.pjs :set ft=processing
-autocmd BufNewFile,BufRead *.radius :set ft=html
 autocmd BufNewFile,BufRead *.cron :set ft=crontab
 autocmd BufNewFile,BufRead *.json :set ft=javascript
 autocmd BufReadPost COMMIT_EDITMSG exec "normal! gg"
@@ -142,6 +138,8 @@ autocmd FileType text setlocal textwidth=78
 autocmd FileType netrw setlocal nolist
 autocmd FileType ruby set sw=2 sts=2 et
 autocmd FileType javascript set sw=2 sts=2 et
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Projectionist
 let g:projectionist_file = "config/projections.json"
@@ -275,3 +273,11 @@ function! GoToLastEditedLine()
     exec "normal! g`\"" |
   endif
 endfunction
+
+call plug#begin('~/.vim/plugged')
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+call plug#end()
