@@ -1,0 +1,14 @@
+{
+  "languageserver": {
+    "sorbet": {
+      "enable": true,
+      "command": "/Users/andrewle/.asdf/shims/bundle",
+      "trace.server": "verbose",
+      "args": ["exec", "srb", "tc", "--enable-all-beta-lsp-features", "--lsp"],
+      "filetypes": ["ruby"],
+      "rootPatterns": ["sorbet/config"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
+}

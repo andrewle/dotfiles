@@ -204,10 +204,10 @@ map <leader>v V:!pbpaste<cr>
 " Copy the current visual mode lines to the pasteboard
 map <leader>c :!pbcopy<cr>u
 
-" Align hash rockets
-vnoremap <c-l> :Align=><cr>
-" Format hash rockets with one space on either side
-vnoremap <c-h> :s/\s*=>\s*/ => /g<cr>:noh<cr>
+" Alignment
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+vnoremap <c-l> :EasyAlign -=<cr>
 
 function! CreateOrOpenDependency()
   let l:output = ALERubyOpenDependency()
@@ -244,18 +244,25 @@ call plug#begin('~/.vim/plugged')
 " Vim ==========
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'adelarsq/vim-matchit'
+Plug 'townk/vim-autoclose'
+
 Plug 'vim-test/vim-test'
+nmap <silent> <leader>] :TestFile<CR>
 
 " Rails/Ruby ==========
 Plug 'jparise/vim-graphql'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
 
 " React/Typescript ==========
 Plug 'leafgarland/typescript-vim'
@@ -264,6 +271,18 @@ Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 call plug#end()
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 let g:coc_global_extensions = [
   \ 'coc-tsserver'
