@@ -106,27 +106,10 @@ nnoremap <leader><leader> <C-^>
 " Fast redraw
 nmap <C-l> :redraw!<CR>
 
-" Syntastic
-function! ALESyntasticCheck()
-  silent! w
-  silent! SyntasticCheck
-  redraw!
-endfunction
-nmap <leader>c :call ALESyntasticCheck()<CR>
-nmap <leader>ce :SyntasticErrors<CR>
-let g:syntastic_enable_signs=1
-let g:syntastic_ignore_files = ['\c.*\.fish$', '\c.*\.html.erb$']
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['sass', 'scss', 'haml', 'ruby'] }
-
 " Completions
 set complete=.,b,u,]
 set completeopt=menu,preview,longest
 set wildmode=longest,list:longest " zsh like text replacement
-
-" SuperTab
-let g:SuperTabCrMapping = 1
-let g:SuperTabLongestHighlight = 1
 
 " File types
 autocmd BufReadPost * call GoToLastEditedLine()
@@ -191,12 +174,6 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-function! CreateDirectoryTreeToFile()
-  exec ':!echo CREATE ' . expand("%:p:h") . '; mkdir -p ' . expand("%:p:h")
-  exec ':w'
-endfunction
-command! AA :call CreateDirectoryTreeToFile()<cr>
-
 function! EditRubySnippets()
   exec ':e ~/.vim/bundle/vim-snippets/snippets/ruby.snippets'
   exec 'normal! zR'
@@ -249,16 +226,6 @@ command! E :Explore
 
 command! AA :call ALERubyOpenAlternateFile()
 
-" SPELLING CORRECTIONS
-"
-iabbrev conosle console
-iabbrev destory destroy
-iabbrev destory_all destroy_all
-iabbrev timline timeline
-
-iabbrev AR: ActiveRecord
-iabbrev HS: HomeSavi:
-
 " allow command line editing like emacs
 cnoremap <C-A>      <Home>
 cnoremap <C-E>      <End>
@@ -275,9 +242,42 @@ function! GoToLastEditedLine()
 endfunction
 
 call plug#begin('~/.vim/plugged')
-Plug 'pangloss/vim-javascript'
+" Vim ==========
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-test/vim-test'
+
+" Rails/Ruby ==========
+Plug 'jparise/vim-graphql'
+Plug 'ngmy/vim-rubocop'
+Plug 'tpope/vim-rails'
+
+" React/Typescript ==========
 Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
 call plug#end()
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)

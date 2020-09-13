@@ -7,3 +7,4 @@ config/configstore
 config/fish/fishd*
 mac/preferences/com.mizage.direct.Divvy.plist
 vim/plugged
+config/coc/extensions/node_modules

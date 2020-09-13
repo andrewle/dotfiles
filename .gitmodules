@@ -1,36 +1,6 @@
-[submodule "vim/bundle/rails"]
-	path = vim/bundle/rails
-	url = https://github.com/tpope/vim-rails.git
-[submodule "vim/bundle/fugitive"]
-	path = vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/vim-indent-guides"]
-	path = vim/bundle/vim-indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
-[submodule "vim/bundle/vim-ios"]
-	path = vim/bundle/vim-ios
-	url = git://github.com/eraserhd/vim-ios.git
-[submodule "vim/bundle/puppet"]
-	path = vim/bundle/puppet
-	url = git://github.com/rodjek/vim-puppet.git
-[submodule "vim/bundle/handlebars"]
-	path = vim/bundle/handlebars
-	url = git://github.com/nono/vim-handlebars.git
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/vim-repeat"]
-	path = vim/bundle/vim-repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/vim-fish"]
-	path = vim/bundle/vim-fish
-	url = https://github.com/dag/vim-fish.git
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
@@ -40,18 +10,3 @@
 [submodule "vim/bundle/vim-addon-mw-utils"]
 	path = vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "vim/bundle/vim-rubocop"]
-	path = vim/bundle/vim-rubocop
-	url = git@github.com:ngmy/vim-rubocop.git
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
-[submodule "vim/bundle/vim-snippets"]
-	path = vim/bundle/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
-[submodule "vim/bundle/vim-ragtag"]
-	path = vim/bundle/vim-ragtag
-	url = https://github.com/tpope/vim-ragtag.git
-[submodule "vim/bundle/vim-projectionist"]
-	path = vim/bundle/vim-projectionist
-	url = https://github.com/tpope/vim-projectionist.git
