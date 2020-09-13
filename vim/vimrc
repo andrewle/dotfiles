@@ -75,7 +75,6 @@ let g:ruby_path="/usr/local/bin/ruby"
 "
 " Hide the following file name patterns from the builtin browser
 let g:netrw_list_hide = '.*\.swp$,\.DS_Store$'
-let g:makegreen_stay_on_file = 1
 
 let g:UltiSnipsSnippetDirectories=["custom_snippets", "UltiSnips"]
 
