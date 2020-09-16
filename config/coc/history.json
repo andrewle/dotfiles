@@ -3,5 +3,16 @@
     "%2FUsers%2Fandrewle%2FWork%2Fcleverific%2Feditorder": [
       "sor"
     ]
+  },
+  "lists": {
+    "%2FUsers%2Fandrewle%2FWork%2Fcleverific%2Feditorder": [
+      "ex"
+    ]
+  },
+  "extensions": {
+    "%2FUsers%2Fandrewle%2FWork%2Fcleverific%2Feditorder": [
+      "coc-pr",
+      "pret"
+    ]
   }
 }

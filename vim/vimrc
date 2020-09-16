@@ -229,7 +229,6 @@ endfunction
 
 call plug#begin('~/.vim/plugged')
 " Vim ==========
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -249,47 +248,11 @@ nmap <silent> <leader>] :TestFile<CR>
 Plug 'jparise/vim-graphql'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-endwise'
 
 " React/Typescript ==========
-Plug 'leafgarland/typescript-vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-Plug 'pangloss/vim-javascript'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'sheerun/vim-polyglot'
+
+" NOTE: Removed vim-styled-components/after/indent files because it totally breaks
+" typescript/tsx indentation
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 call plug#end()
-
-function! ExpandInsertDefineFunctionSnippet()
-  execute "normal o deffun\<esc>==A\<Plug>(coc-snippets-expand)"
-endfunction
-nmap <silent><leader>d :call ExpandInsertDefineFunctionSnippet()<CR>
-nmap <silent><leader>s :CocCommand snippets.editSnippets<cr>
-xmap <leader>x  <Plug>(coc-convert-snippet)
-
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-let g:coc_global_extensions = [
-  \ 'coc-tsserver'
-  \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
