@@ -6,13 +6,19 @@
   },
   "lists": {
     "%2FUsers%2Fandrewle%2FWork%2Fcleverific%2Feditorder": [
-      "ex"
+      "ex",
+      "commands"
     ]
   },
   "extensions": {
     "%2FUsers%2Fandrewle%2FWork%2Fcleverific%2Feditorder": [
       "coc-pr",
       "pret"
+    ]
+  },
+  "commands": {
+    "%2FUsers%2Fandrewle%2FWork%2Fcleverific%2Feditorder": [
+      "file"
     ]
   }
 }

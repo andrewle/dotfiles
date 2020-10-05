@@ -23,7 +23,15 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet deffun "insert function"
+snippet ttag "jsx tag"
+<${1}${2}></${0:$1}>
+endsnippet
+
+snippet afun "arrow function" i
+() => { ${1} }
+endsnippet
+
+snippet ffun "define arrow function" mb
 const ${1:functionName} = (${2:args}) => {
 };
 endsnippet
@@ -32,11 +40,7 @@ snippet cl "console.log"
 console.log(${0});
 endsnippet
 
-snippet afun "arrow function" i
-() => { ${1} }
-endsnippet
-
-snippet ffun "define arrow function" mb
+snippet deffun "insert function"
 const ${1:functionName} = (${2:args}) => {
 };
 endsnippet
@@ -49,9 +53,7 @@ endsnippet
 
 snippet desc "jest describe"
 describe("${1}", () => {
-  it("${2}", () => {
-	${3}
-  });
+  ${2}
 });
 endsnippet
 
@@ -69,6 +71,10 @@ endsnippet
 
 snippet imlo "import lodash"
 import { $1 } from "lodash";
+endsnippet
+
+snippet imst "import styled"
+import styled from "styled-components";
 endsnippet
 
 snippet uses "useState hook"
